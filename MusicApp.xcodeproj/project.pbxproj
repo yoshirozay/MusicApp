@@ -11,6 +11,12 @@
 		E907A21129DDC23B004BDC8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907A21029DDC23B004BDC8C /* ContentView.swift */; };
 		E907A21329DDC23D004BDC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907A21229DDC23D004BDC8C /* Assets.xcassets */; };
 		E907A21729DDC23D004BDC8C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907A21629DDC23D004BDC8C /* Preview Assets.xcassets */; };
+		E907A22829DDCA11004BDC8C /* songs.json in Resources */ = {isa = PBXBuildFile; fileRef = E907A22729DDCA11004BDC8C /* songs.json */; };
+		E907A22929DDCA84004BDC8C /* songs.json in Sources */ = {isa = PBXBuildFile; fileRef = E907A22729DDCA11004BDC8C /* songs.json */; };
+		E92954FA29DF3AD3001677E4 /* albumList.json in Resources */ = {isa = PBXBuildFile; fileRef = E92954F929DF3AD3001677E4 /* albumList.json */; };
+		E92954FC29DF4436001677E4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FB29DF4436001677E4 /* Extensions.swift */; };
+		E92954FE29DF5CCE001677E4 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FD29DF5CCE001677E4 /* Songs.swift */; };
+		E929550029DF5D4A001677E4 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FF29DF5D4A001677E4 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +26,11 @@
 		E907A21229DDC23D004BDC8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907A21429DDC23D004BDC8C /* MusicApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicApp.entitlements; sourceTree = "<group>"; };
 		E907A21629DDC23D004BDC8C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E907A22729DDCA11004BDC8C /* songs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = songs.json; sourceTree = "<group>"; };
+		E92954F929DF3AD3001677E4 /* albumList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = albumList.json; sourceTree = "<group>"; };
+		E92954FB29DF4436001677E4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E92954FD29DF5CCE001677E4 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
+		E92954FF29DF5D4A001677E4 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +63,13 @@
 		E907A20D29DDC23B004BDC8C /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				E907A22729DDCA11004BDC8C /* songs.json */,
+				E92954F929DF3AD3001677E4 /* albumList.json */,
 				E907A20E29DDC23B004BDC8C /* MusicAppApp.swift */,
+				E92954FD29DF5CCE001677E4 /* Songs.swift */,
+				E92954FF29DF5D4A001677E4 /* Home.swift */,
 				E907A21029DDC23B004BDC8C /* ContentView.swift */,
+				E92954FB29DF4436001677E4 /* Extensions.swift */,
 				E907A21229DDC23D004BDC8C /* Assets.xcassets */,
 				E907A21429DDC23D004BDC8C /* MusicApp.entitlements */,
 				E907A21529DDC23D004BDC8C /* Preview Content */,
@@ -128,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E907A21729DDC23D004BDC8C /* Preview Assets.xcassets in Resources */,
+				E907A22829DDCA11004BDC8C /* songs.json in Resources */,
 				E907A21329DDC23D004BDC8C /* Assets.xcassets in Resources */,
+				E92954FA29DF3AD3001677E4 /* albumList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92954FE29DF5CCE001677E4 /* Songs.swift in Sources */,
+				E92954FC29DF4436001677E4 /* Extensions.swift in Sources */,
+				E907A22929DDCA84004BDC8C /* songs.json in Sources */,
 				E907A21129DDC23B004BDC8C /* ContentView.swift in Sources */,
+				E929550029DF5D4A001677E4 /* Home.swift in Sources */,
 				E907A20F29DDC23B004BDC8C /* MusicAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +301,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.2;
@@ -287,10 +309,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.carsonosullivan.MusicApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,7 +341,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.2;
@@ -325,10 +349,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.carsonosullivan.MusicApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

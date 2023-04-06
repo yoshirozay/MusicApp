@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "artistName": "Bad Bunny",
+        "songName": "DÁKITI",
+        "albumPhoto": "badBunny"
+    },
+    {
+        "id": 1,
+        "artistName": "Burna Boy",
+        "songName": "It's Plenty",
+        "albumPhoto": "burnaBoy"
+    },
+    {
+        "id": 2,
+        "artistName": "Chance the Rapper",
+        "songName": "Juke Jam",
+        "albumPhoto": "chance"
+    },
+    {
+        "id": 3,
+        "artistName": "cKay",
+        "songName": "love nwantiti",
+        "albumPhoto": "ckay"
+    },
+    {
+        "id": 4,
+        "artistName": "Drake",
+        "songName": "Take Care",
+        "albumPhoto": "takeCare"
+    },
+    {
+        "id": 5,
+        "artistName": "Frank Ocean",
+        "songName": "Pyramids",
+        "albumPhoto": "channelOrange"
+    },
+    {
+        "id": 6,
+        "artistName": "Khalid",
+        "songName": "Right Back",
+        "albumPhoto": "freeSpirit"
+    },
+    {
+        "id": 7,
+        "artistName": "Cannons",
+        "songName": "Hurricane",
+        "albumPhoto": "feverDream"
+    },
+    {
+        "id": 8,
+        "artistName": "The Weeknd",
+        "songName": "Alone Again",
+        "albumPhoto": "afterHours"
+    },
+    {
+        "id": 9,
+        "artistName": "sapientdream",
+        "songName": "Painter",
+        "albumPhoto": "dreamIII"
+    }
+]
