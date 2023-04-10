@@ -40,6 +40,7 @@ struct Songs: View {
                             }
                     }
                 }
+                .offset(y: -9)
             }
         }
     }
@@ -74,7 +75,6 @@ struct IndividualSong: View {
                 .frame(height: 2)
                 .foregroundColor(.white)
         }
-        .offset(y: 7)
     }
 }
 
@@ -98,7 +98,7 @@ struct OpenedSong: View {
                     PlayerView(size)
                         .offset(y: animateContent ? 0 : size.height)
                 }
-                .padding(.top, safeArea.top + (safeArea.bottom == 0 ? 10 : 0))
+//                .padding(.top, safeArea.top + (safeArea.bottom == 0 ? 10 : 0))
                 .padding(.bottom, safeArea.bottom == 0 ? 10 : safeArea.bottom)
                 .padding(.horizontal, 25)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -144,11 +144,9 @@ struct OpenedSong: View {
                     .offset(y: 250)
                     .opacity(animateDrake ? 1 : 0)
                 VisualEffectBlur(blurStyle: .systemMaterial)
-                    .ignoresSafeArea()
                 RoundedRectangle(cornerRadius: animateContent ? deviceCornerRadius * cornerProgress : 0, style: .continuous)
                     .fill(Color.clear)
                     .opacity(animateContent ? 1 : 0)
-                
             })
             .overlay(alignment: .top) {
                 MusicInfo(music: music, animation: animation)

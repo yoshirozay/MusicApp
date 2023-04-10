@@ -137,7 +137,9 @@ class MusicObservable: ObservableObject {
     @Published var selectedSong: Song = Song(songName: "", albumPhoto: "", artistName: "", id: 4, length: "")
     @Published var albums: [Album] = readAlbumFile(fileName: "albumList")
     @Published var selectedAlbum: Album = Album(id: 0, artistName: "", albumName: "", albumPhoto: "", songs: [Song(songName: "", albumPhoto: "", artistName: "", id: 0, length: "")])
-    
+    init() {
+        selectAlbum(album: albums[1])
+    }
     func showMediaPlayer() {
         withAnimation(.easeInOut(duration: 0.3)) {
             showingMediaPlayer.toggle()

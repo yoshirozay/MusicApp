@@ -2,100 +2,261 @@
     {
         "id": 0,
         "artistName": "Bad Bunny",
-        "albumName": "DÁKITI",
+        "albumName": "EL ÚLTIMO TOUR DEL MUNDO",
         "albumPhoto": "badBunny",
         "songs": [
             {
                 "id": 0,
-                "artistName": "CKay",
-                "songName": "dtf",
-                "albumPhoto": "ckay",
-                "length": "3:31"
+                "artistName": "Bad Bunny",
+                "songName": "EL MUNDO ES MÍO",
+                "albumPhoto": "badBunny",
+                "length": "2:45"
             },
             {
                 "id": 1,
-                "artistName": "CKay",
-                "songName": "love nwantiti (ah ah ah)",
-                "albumPhoto": "ckay",
-                "length": "2:25"
+                "artistName": "Bad Bunny",
+                "songName": "TE MUDASTE",
+                "albumPhoto": "badBunny",
+                "length": "2:10"
             },
             {
                 "id": 2,
-                "artistName": "CKay",
-                "songName": "kalakuta",
-                "albumPhoto": "ckay",
-                "length": "2:39"
+                "artistName": "Bad Bunny",
+                "songName": "HOY COBRÉ",
+                "albumPhoto": "badBunny",
+                "length": "2:42"
             },
             {
                 "id": 3,
-                "artistName": "CKay, DJ Lambo",
-                "songName": "way (feat. DJ Lambo)",
-                "albumPhoto": "ckay",
-                "length": "2:32"
+                "artistName": "Bad Bunny",
+                "songName": "MALDITA POBREZA",
+                "albumPhoto": "badBunny",
+                "length": "3:33"
             },
             {
                 "id": 4,
-                "artistName": "CKay",
-                "songName": "ski ski",
-                "albumPhoto": "ckay",
-                "length": "3:06"
+                "artistName": "Bad Bunny",
+                "songName": "LA NOCHE DE ANOCHE",
+                "albumPhoto": "badBunny",
+                "length": "3:23"
             },
             {
                 "id": 5,
-                "artistName": "CKay, Boj",
-                "songName": "oliver kahn (feat. Boj)",
+                "artistName": "Bad Bunny, ROSALÍA",
+                "songName": "TE DESSO LO MEJOR",
                 "albumPhoto": "ckay",
-                "length": "2:52"
+                "length": "2:19"
+            },
+            {
+                "id": 6,
+                "artistName": "Bad Bunny",
+                "songName": "YO VISTO ASÍ",
+                "albumPhoto": "badBunny",
+                "length": "3:11"
+            },
+            {
+                "id": 7,
+                "artistName": "Bad Bunny",
+                "songName": "HACIENDO QUE ME AMAS",
+                "albumPhoto": "badBunny",
+                "length": "3:37"
+            },
+            {
+                "id": 8,
+                "artistName": "Bad Bunny",
+                "songName": "BOOKER T",
+                "albumPhoto": "badBunny",
+                "length": "2:36"
+            },
+            {
+                "id": 9,
+                "artistName": "Bad Bunny",
+                "songName": "LA DROGA",
+                "albumPhoto": "badBunny",
+                "length": "2:42"
+            },
+            {
+                "id": 10,
+                "artistName": "Bad Bunny, JhayCo",
+                "songName": "DÁKITI",
+                "albumPhoto": "badBunny",
+                "length": "3:25"
+            },
+            {
+                "id": 11,
+                "artistName": "Bad Bunny, ROSALÍA",
+                "songName": "TRELLAS",
+                "albumPhoto": "badBunny",
+                "length": "2:37"
+            },
+            {
+                "id": 12,
+                "artistName": "Bad Bunny, ABRA",
+                "songName": "SORRY PAPI",
+                "albumPhoto": "badBunny",
+                "length": "2:43"
+            },
+            {
+                "id": 13,
+                "artistName": "Bad Bunny",
+                "songName": "120",
+                "albumPhoto": "badBunny",
+                "length": "2:31"
+            },
+            {
+                "id": 14,
+                "artistName": "Bad Bunny",
+                "songName": "ANTES QUE SE ACABE",
+                "albumPhoto": "badBunny",
+                "length": "3:41"
+            },
+            {
+                "id": 15,
+                "artistName": "Bad Bunny",
+                "songName": "CANTARES DE NAVIDAD",
+                "albumPhoto": "badBunny",
+                "length": "3:19"
             }
         ]
     },
     {
         "id": 1,
         "artistName": "Burna Boy",
-        "albumName": "It's Plenty",
+        "albumName": "Love, Damini",
         "albumPhoto": "burnaBoy",
         "songs": [
             {
                 "id": 0,
-                "artistName": "CKay",
-                "songName": "dtf",
-                "albumPhoto": "ckay",
-                "length": "3:31"
+                "artistName": "Burna Boy, Ladysmith Black Mambazo",
+                "songName": "Glory",
+                "albumPhoto": "burnaBoy",
+                "length": "3:51"
             },
             {
                 "id": 1,
-                "artistName": "CKay",
-                "songName": "love nwantiti (ah ah ah)",
-                "albumPhoto": "ckay",
-                "length": "2:25"
+                "artistName": "Burna Boy",
+                "songName": "Science",
+                "albumPhoto": "burnaBoy",
+                "length": "3:21"
             },
             {
                 "id": 2,
-                "artistName": "CKay",
-                "songName": "kalakuta",
-                "albumPhoto": "ckay",
-                "length": "2:39"
+                "artistName": "Burna Boy, J Hus",
+                "songName": "Cloack & Dagger",
+                "albumPhoto": "burnaBoy",
+                "length": "3:31"
             },
             {
                 "id": 3,
-                "artistName": "CKay, DJ Lambo",
-                "songName": "way (feat. DJ Lambo)",
-                "albumPhoto": "ckay",
+                "artistName": "Burna Boy",
+                "songName": "Kilometre",
+                "albumPhoto": "burnaBoy",
                 "length": "2:32"
             },
             {
                 "id": 4,
-                "artistName": "CKay",
-                "songName": "ski ski",
-                "albumPhoto": "ckay",
-                "length": "3:06"
+                "artistName": "Burna Boy",
+                "songName": "Jagele",
+                "albumPhoto": "burnaBoy",
+                "length": "3:02"
             },
             {
                 "id": 5,
-                "artistName": "CKay, Boj",
-                "songName": "oliver kahn (feat. Boj)",
-                "albumPhoto": "ckay",
+                "artistName": "Burna Boy",
+                "songName": "Whiskey",
+                "albumPhoto": "burnaBoy",
+                "length": "3:23"
+            },
+            {
+                "id": 6,
+                "artistName": "Burna Boy",
+                "songName": "Last Last",
+                "albumPhoto": "burnaBoy",
                 "length": "2:52"
+            },
+            {
+                "id": 7,
+                "artistName": "Burna Boy, Victony",
+                "songName": "Different Size",
+                "albumPhoto": "burnaBoy",
+                "length": "3:29"
+            },
+            {
+                "id": 8,
+                "artistName": "Burna Boy",
+                "songName": "It's Plenty",
+                "albumPhoto": "burnaBoy",
+                "length": "3:36"
+            },
+            {
+                "id": 9,
+                "artistName": "Burna Boy",
+                "songName": "Dirty Secrets",
+                "albumPhoto": "burnaBoy",
+                "length": "2:31"
+            },
+            {
+                "id": 10,
+                "artistName": "Burna Boy, Popcaan",
+                "songName": "Toni-Ann Singh",
+                "albumPhoto": "burnaBoy",
+                "length": "2:55"
+            },
+            {
+                "id": 11,
+                "artistName": "Burna Boy, Blxst, Kehlani",
+                "songName": "Solid",
+                "albumPhoto": "burnaBoy",
+                "length": "3:15"
+            },
+            {
+                "id": 12,
+                "artistName": "Burna Boy, Ed Sheeran",
+                "songName": "For My Hand",
+                "albumPhoto": "burnaBoy",
+                "length": "2:39"
+            },
+            {
+                "id": 13,
+                "artistName": "Burna Boy, J Balvin",
+                "songName": "Rollercoaster",
+                "albumPhoto": "burnaBoy",
+                "length": "3:07"
+            },
+            {
+                "id": 14,
+                "artistName": "Burna Boy",
+                "songName": "Vanilla",
+                "albumPhoto": "burnaBoy",
+                "length": "2:35"
+            },
+            {
+                "id": 15,
+                "artistName": "Burna Boy",
+                "songName": "Common Person",
+                "albumPhoto": "burnaBoy",
+                "length": "3:30"
+            },
+            {
+                "id": 16,
+                "artistName": "Burna Boy",
+                "songName": "Wild Dreams",
+                "albumPhoto": "burnaBoy",
+                "length": "3:06"
+            },
+            {
+                "id": 17,
+                "artistName": "Burna Boy, Victony",
+                "songName": "How Bad Could It Be",
+                "albumPhoto": "burnaBoy",
+                "length": "4:57"
+            },
+            {
+                "id": 18,
+                "artistName": "Burna Boy, Ladysmith Black Mambazo",
+                "songName": "Love, Damini",
+                "albumPhoto": "burnaBoy",
+                "length": "2:22"
             }
         ]
     },
@@ -700,96 +861,229 @@
         "albumPhoto": "afterHours",
         "songs": [
             {
-                "id": 0,
-                "artistName": "CKay",
-                "songName": "dtf",
-                "albumPhoto": "ckay",
-                "length": "3:31"
+              "id": 0,
+              "artistName": "The Weeknd",
+              "songName": "Alone Again",
+              "albumPhoto": "afterHours",
+              "length": "4:10"
             },
             {
-                "id": 1,
-                "artistName": "CKay",
-                "songName": "love nwantiti (ah ah ah)",
-                "albumPhoto": "ckay",
-                "length": "2:25"
+              "id": 1,
+              "artistName": "The Weeknd",
+              "songName": "Too Late",
+              "albumPhoto": "afterHours",
+              "length": "3:59"
             },
             {
-                "id": 2,
-                "artistName": "CKay",
-                "songName": "kalakuta",
-                "albumPhoto": "ckay",
-                "length": "2:39"
+              "id": 2,
+              "artistName": "The Weeknd",
+              "songName": "Hardest to Love",
+              "albumPhoto": "afterHours",
+              "length": "3:31"
             },
             {
-                "id": 3,
-                "artistName": "CKay, DJ Lambo",
-                "songName": "way (feat. DJ Lambo)",
-                "albumPhoto": "ckay",
-                "length": "2:32"
+              "id": 3,
+              "artistName": "The Weeknd",
+              "songName": "Scared to Live",
+              "albumPhoto": "afterHours",
+              "length": "3:11"
             },
             {
-                "id": 4,
-                "artistName": "CKay",
-                "songName": "ski ski",
-                "albumPhoto": "ckay",
-                "length": "3:06"
+              "id": 4,
+              "artistName": "The Weeknd",
+              "songName": "Snowchild",
+              "albumPhoto": "afterHours",
+              "length": "4:07"
             },
             {
-                "id": 5,
-                "artistName": "CKay, Boj",
-                "songName": "oliver kahn (feat. Boj)",
-                "albumPhoto": "ckay",
-                "length": "2:52"
+              "id": 5,
+              "artistName": "The Weeknd",
+              "songName": "Escape from LA",
+              "albumPhoto": "afterHours",
+              "length": "5:55"
+            },
+            {
+              "id": 6,
+              "artistName": "The Weeknd",
+              "songName": "Heartless",
+              "albumPhoto": "afterHours",
+              "length": "3:18"
+            },
+            {
+              "id": 7,
+              "artistName": "The Weeknd",
+              "songName": "Faith",
+              "albumPhoto": "afterHours",
+              "length": "4:43"
+            },
+            {
+              "id": 8,
+              "artistName": "The Weeknd",
+              "songName": "Blinding Lights",
+              "albumPhoto": "afterHours",
+              "length": "3:20"
+            },
+            {
+              "id": 9,
+              "artistName": "The Weeknd",
+              "songName": "In Your Eyes",
+              "albumPhoto": "afterHours",
+              "length": "3:57"
+            },
+            {
+              "id": 10,
+              "artistName": "The Weeknd",
+              "songName": "Save Your Tears",
+              "albumPhoto": "afterHours",
+              "length": "3:35"
+            },
+            {
+              "id": 11,
+              "artistName": "The Weeknd",
+              "songName": "Repeat After Me (Interlude)",
+              "albumPhoto": "afterHours",
+              "length": "3:15"
+            },
+            {
+              "id": 12,
+              "artistName": "The Weeknd",
+              "songName": "After Hours",
+              "albumPhoto": "afterHours",
+              "length": "6:01"
+            },
+            {
+              "id": 13,
+              "artistName": "The Weeknd",
+              "songName": "Until I Bleed Out",
+              "albumPhoto": "afterHours",
+              "length": "3:10"
             }
         ]
     },
     {
         "id": 9,
-        "artistName": "sapientdream",
-        "albumName": "Painter",
+        "artistName": "Slushii, sapientdream",
+        "albumName": "Dream III",
         "albumPhoto": "dreamIII",
         "songs": [
             {
                 "id": 0,
-                "artistName": "CKay",
-                "songName": "dtf",
-                "albumPhoto": "ckay",
-                "length": "3:31"
+                "artistName": "Slushii, sapientdream",
+                "songName": "Hello World",
+                "albumPhoto": "dreamIII",
+                "length": "0:54"
             },
             {
                 "id": 1,
-                "artistName": "CKay",
-                "songName": "love nwantiti (ah ah ah)",
-                "albumPhoto": "ckay",
-                "length": "2:25"
+                "artistName": "Slushii, sapientdream",
+                "songName": "Painter",
+                "albumPhoto": "dreamIII",
+                "length": "2:45"
             },
             {
                 "id": 2,
-                "artistName": "CKay",
-                "songName": "kalakuta",
-                "albumPhoto": "ckay",
-                "length": "2:39"
+                "artistName": "Slushii, sapientdream",
+                "songName": "that night you held my hand",
+                "albumPhoto": "dreamIII",
+                "length": "2:00"
             },
             {
                 "id": 3,
-                "artistName": "CKay, DJ Lambo",
-                "songName": "way (feat. DJ Lambo)",
-                "albumPhoto": "ckay",
-                "length": "2:32"
+                "artistName": "Slushii, sapientdream",
+                "songName": "i'm going to change the world (one day)",
+                "albumPhoto": "dreamIII",
+                "length": "1:46"
             },
             {
                 "id": 4,
-                "artistName": "CKay",
-                "songName": "ski ski",
-                "albumPhoto": "ckay",
-                "length": "3:06"
+                "artistName": "Slushii, sapientdream",
+                "songName": "Fall for You",
+                "albumPhoto": "dreamIII",
+                "length": "3:55"
             },
             {
                 "id": 5,
-                "artistName": "CKay, Boj",
-                "songName": "oliver kahn (feat. Boj)",
-                "albumPhoto": "ckay",
-                "length": "2:52"
+                "artistName": "Slushii, sapientdream",
+                "songName": "Island Loneliness",
+                "albumPhoto": "dreamIII",
+                "length": "1:57"
+            },
+            {
+                "id": 6,
+                "artistName": "Slushii, sapientdream",
+                "songName": "Question",
+                "albumPhoto": "dreamIII",
+                "length": "2:55"
+            },
+            {
+                "id": 7,
+                "artistName": "Slushii, sapientdream",
+                "songName": "May 8th",
+                "albumPhoto": "dreamIII",
+                "length": "2:16"
+            },
+            {
+                "id": 8,
+                "artistName": "Slushii, sapientdream",
+                "songName": "In Her Eyes",
+                "albumPhoto": "dreamIII",
+                "length": "2:43"
+            },
+            {
+                "id": 9,
+                "artistName": "Slushii, sapientdream",
+                "songName": "lost and found",
+                "albumPhoto": "dreamIII",
+                "length": "3:21"
+            },
+            {
+                "id": 10,
+                "artistName": "Slushii, sapientdream",
+                "songName": "All Alone",
+                "albumPhoto": "dreamIII",
+                "length": "2:11"
+            },
+            {
+                "id": 11,
+                "artistName": "Slushii, sapientdream",
+                "songName": "imu",
+                "albumPhoto": "dreamIII",
+                "length": "3:27"
+            },
+            {
+                "id": 12,
+                "artistName": "Slushii, sapientdream",
+                "songName": "if these last words (few moments)",
+                "albumPhoto": "dreamIII",
+                "length": "3:20"
+            },
+            {
+                "id": 13,
+                "artistName": "Slushii, sapientdream",
+                "songName": "Mind Fuzz",
+                "albumPhoto": "dreamIII",
+                "length": "4:04"
+            },
+            {
+                "id": 14,
+                "artistName": "Slushii, sapientdream",
+                "songName": "Was I Just A Friend",
+                "albumPhoto": "dreamIII",
+                "length": "2:45"
+            },
+            {
+                "id": 15,
+                "artistName": "Slushii, sapientdream",
+                "songName": "Young Love",
+                "albumPhoto": "dreamIII",
+                "length": "2:20"
+            },
+            {
+                "id": 16,
+                "artistName": "Slushii, sapientdream",
+                "songName": "Goodbye World",
+                "albumPhoto": "dreamIII",
+                "length": "2:03"
             }
         ]
     }

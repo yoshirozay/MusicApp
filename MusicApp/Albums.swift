@@ -17,12 +17,10 @@ struct Albums: View {
                 OpenedAlbum(music: music)
                 AlbumCarousel
                     .frame(height: 120)
-                    .offset(y: music.selectedSong.songName == "" ? -4 : -74)
+                    .padding(.bottom, music.selectedSong.songName == "" ? 4 : 74)
             }
         }
-        .task {
-            music.selectAlbum(album: music.albums[1])
-        }
+
     }
     var AlbumCarousel: some View {
         ZStack {
@@ -95,6 +93,7 @@ struct OpenedAlbum: View {
                     VStack {
                         Text(music.selectedAlbum.albumName)
                             .font(.title3.weight(.semibold))
+                            .multilineTextAlignment(.center)
                         Text(music.selectedAlbum.artistName)
                             .font(.body.weight(.light))
                     }
@@ -105,13 +104,20 @@ struct OpenedAlbum: View {
             .frame(height: size.width/2 - 10)
             //            .matchedGeometryEffect(id: "albumArt", in: animation)
         }
-        .padding([.horizontal, .top])
+        .padding(.horizontal)
     }
     var SongList: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 16)  {
                 ForEach(music.selectedAlbum.songs, id: \.self) { item in
                     IndividualSong(song: item)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            withAnimation {
+                                music.selectSong(song: item)
+                                music.showMediaPlayer()
+                            }
+                        }
                     Rectangle()
                         .frame(height: 1)
                 }
