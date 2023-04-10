@@ -396,7 +396,7 @@
             {
                 "id": 3,
                 "artistName": "CKay, DJ Lambo",
-                "songName": "way (feat. DJ Lambo)",
+                "songName": "way",
                 "albumPhoto": "ckay",
                 "length": "2:32"
             },
@@ -413,7 +413,21 @@
                 "songName": "oliver kahn (feat. Boj)",
                 "albumPhoto": "ckay",
                 "length": "2:52"
-            }
+            },
+            {
+                "id": 6,
+                "artistName": "CKay, Blaqbonez",
+                "songName": "like to party",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 7,
+                "artistName": "CKay, Barry Jhay",
+                "songName": "beeni",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            },
         ]
     },
     {

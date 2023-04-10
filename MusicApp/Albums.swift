@@ -72,7 +72,7 @@ struct Albums: View {
                 .frame(width: 40)
             VStack (alignment: .leading, spacing: 2) {
                 Text(song.songName)
-                    .font(.title3.weight(.medium))
+                    .font(.body.weight(.medium))
                 Text(song.artistName)
                     .font(.subheadline.weight(.light))
             }
