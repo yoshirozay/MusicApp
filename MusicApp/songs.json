@@ -3,60 +3,70 @@
         "id": 0,
         "artistName": "Bad Bunny",
         "songName": "DÁKITI",
-        "albumPhoto": "badBunny"
+        "albumPhoto": "badBunny",
+        "length": "3:34"
     },
     {
         "id": 1,
         "artistName": "Burna Boy",
         "songName": "It's Plenty",
-        "albumPhoto": "burnaBoy"
+        "albumPhoto": "burnaBoy",
+        "length": "3:14"
     },
     {
         "id": 2,
         "artistName": "Chance the Rapper",
         "songName": "Juke Jam",
-        "albumPhoto": "chance"
+        "albumPhoto": "chance",
+        "length": "3:21"
     },
     {
         "id": 3,
         "artistName": "cKay",
         "songName": "love nwantiti",
-        "albumPhoto": "ckay"
+        "albumPhoto": "ckay",
+        "length": "3:54"
     },
     {
         "id": 4,
         "artistName": "Drake",
         "songName": "Take Care",
-        "albumPhoto": "takeCare"
+        "albumPhoto": "takeCare",
+        "length": "3:44"
     },
     {
         "id": 5,
         "artistName": "Frank Ocean",
         "songName": "Pyramids",
-        "albumPhoto": "channelOrange"
+        "albumPhoto": "channelOrange",
+        "length": "3:38"
     },
     {
         "id": 6,
         "artistName": "Khalid",
         "songName": "Right Back",
-        "albumPhoto": "freeSpirit"
+        "albumPhoto": "freeSpirit",
+        "length": "3:39"
     },
     {
         "id": 7,
         "artistName": "Cannons",
         "songName": "Hurricane",
-        "albumPhoto": "feverDream"
+        "albumPhoto": "feverDream",
+        "length": "3:31"
     },
     {
         "id": 8,
         "artistName": "The Weeknd",
         "songName": "Alone Again",
-        "albumPhoto": "afterHours"
+        "albumPhoto": "afterHours",
+        "length": "3:32"
     },
     {
         "id": 9,
         "artistName": "sapientdream",
         "songName": "Painter",
-        "albumPhoto": "dreamIII"
+        "albumPhoto": "dreamIII",
+        "length": "3:30"
     }
 ]

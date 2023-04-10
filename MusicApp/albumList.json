@@ -2,61 +2,795 @@
     {
         "id": 0,
         "artistName": "Bad Bunny",
-        "songName": "DÁKITI",
-        "albumPhoto": "badBunny"
+        "albumName": "DÁKITI",
+        "albumPhoto": "badBunny",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "CKay",
+                "songName": "dtf",
+                "albumPhoto": "ckay",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "CKay",
+                "songName": "love nwantiti (ah ah ah)",
+                "albumPhoto": "ckay",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "CKay",
+                "songName": "kalakuta",
+                "albumPhoto": "ckay",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "CKay, DJ Lambo",
+                "songName": "way (feat. DJ Lambo)",
+                "albumPhoto": "ckay",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "CKay",
+                "songName": "ski ski",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "CKay, Boj",
+                "songName": "oliver kahn (feat. Boj)",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            }
+        ]
     },
     {
         "id": 1,
         "artistName": "Burna Boy",
-        "songName": "It's Plenty",
-        "albumPhoto": "burnaBoy"
+        "albumName": "It's Plenty",
+        "albumPhoto": "burnaBoy",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "CKay",
+                "songName": "dtf",
+                "albumPhoto": "ckay",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "CKay",
+                "songName": "love nwantiti (ah ah ah)",
+                "albumPhoto": "ckay",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "CKay",
+                "songName": "kalakuta",
+                "albumPhoto": "ckay",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "CKay, DJ Lambo",
+                "songName": "way (feat. DJ Lambo)",
+                "albumPhoto": "ckay",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "CKay",
+                "songName": "ski ski",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "CKay, Boj",
+                "songName": "oliver kahn (feat. Boj)",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            }
+        ]
     },
     {
         "id": 2,
         "artistName": "Chance the Rapper",
-        "songName": "Juke Jam",
-        "albumPhoto": "chance"
+        "albumName": "Coloring Book",
+        "albumPhoto": "chance",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "Chance the Rapper, Kanye West, Chicago Children's Choir ",
+                "songName": "All We Got",
+                "albumPhoto": "chance",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "Chance the Rapper, Lil Wayne, 2 Chainz",
+                "songName": "No Problem",
+                "albumPhoto": "chance",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "Chance the Rapper, Jeremih, Francis and the Lights",
+                "songName": "Summer Friends",
+                "albumPhoto": "chance",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "Chance the Rapper",
+                "songName": "D.R.A.M. Sings Special",
+                "albumPhoto": "chance",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "Chance the Rapper",
+                "songName": "Blessings",
+                "albumPhoto": "chance",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "Chance the Rapper",
+                "songName": "Same Drugs",
+                "albumPhoto": "chance",
+                "length": "2:52"
+            },
+            {
+                "id": 6,
+                "artistName": "Chance the Rapper, Young Thug, Lil Yachty",
+                "songName": "Mixtape",
+                "albumPhoto": "chance",
+                "length": "3:31"
+            },
+            {
+                "id": 7,
+                "artistName": "Chance the Rapper, Saba",
+                "songName": "Angels",
+                "albumPhoto": "chance",
+                "length": "2:25"
+            },
+            {
+                "id": 8,
+                "artistName": "Chance the Rapper, Justin Bieber, Towkio",
+                "songName": "Juke Jam",
+                "albumPhoto": "chance",
+                "length": "2:39"
+            },
+            {
+                "id": 9,
+                "artistName": "Chance the Rapper, Knox Fortune",
+                "songName": "All Night",
+                "albumPhoto": "chance",
+                "length": "2:32"
+            },
+            {
+                "id": 10,
+                "artistName": "Chance the Rapper, Jay Electronica, My cousin Nicole",
+                "songName": "How Great",
+                "albumPhoto": "chance",
+                "length": "3:06"
+            },
+            {
+                "id": 11,
+                "artistName": "Chance the Rapper, Future",
+                "songName": "Smoke Break",
+                "albumPhoto": "chance",
+                "length": "2:52"
+            },
+            {
+                "id": 12,
+                "artistName": "Chance the Rapper, T-Pain, Kirk Franklin, Eryn Allen Kane, Noname",
+                "songName": "Finish Line/Drown",
+                "albumPhoto": "chance",
+                "length": "3:06"
+            },
+            {
+                "id": 13,
+                "artistName": "Chance the Rapper, Ty Dolla $ign",
+                "songName": "Blessings (Reprise)",
+                "albumPhoto": "chance",
+                "length": "2:52"
+            }
+        ]
     },
     {
         "id": 3,
         "artistName": "cKay",
-        "songName": "love nwantiti",
-        "albumPhoto": "ckay"
+        "albumName": "love nwantiti",
+        "albumPhoto": "ckay",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "CKay",
+                "songName": "dtf",
+                "albumPhoto": "ckay",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "CKay",
+                "songName": "love nwantiti (ah ah ah)",
+                "albumPhoto": "ckay",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "CKay",
+                "songName": "kalakuta",
+                "albumPhoto": "ckay",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "CKay, DJ Lambo",
+                "songName": "way (feat. DJ Lambo)",
+                "albumPhoto": "ckay",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "CKay",
+                "songName": "ski ski",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "CKay, Boj",
+                "songName": "oliver kahn (feat. Boj)",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            }
+        ]
     },
     {
         "id": 4,
         "artistName": "Drake",
-        "songName": "Take Care",
-        "albumPhoto": "takeCare"
+        "albumName": "Take Care",
+        "albumPhoto": "takeCare",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "Drake",
+                "songName": "Over My Dead Body",
+                "albumPhoto": "takeCare",
+                "length": "4:32"
+            },
+            {
+                "id": 1,
+                "artistName": "Drake",
+                "songName": "Shot for Me",
+                "albumPhoto": "takeCare",
+                "length": "3:44"
+            },
+            {
+                "id": 2,
+                "artistName": "Drake",
+                "songName": "Headlines",
+                "albumPhoto": "takeCare",
+                "length": "3:26"
+            },
+            {
+                "id": 3,
+                "artistName": "Drake",
+                "songName": "Crew Love (feat. The Weeknd)",
+                "albumPhoto": "takeCare",
+                "length": "3:29"
+            },
+            {
+                "id": 4,
+                "artistName": "Drake",
+                "songName": "Take Care (feat. Rihanna)",
+                "albumPhoto": "takeCare",
+                "length": "4:37"
+            },
+            {
+                "id": 5,
+                "artistName": "Drake",
+                "songName": "Marvins Room",
+                "albumPhoto": "takeCare",
+                "length": "5:47"
+            },
+            {
+                "id": 6,
+                "artistName": "Drake",
+                "songName": "Buried Alive Interlude (feat. Kendrick Lamar)",
+                "albumPhoto": "takeCare",
+                "length": "2:31"
+            },
+            {
+                "id": 7,
+                "artistName": "Drake",
+                "songName": "Under Ground Kings",
+                "albumPhoto": "takeCare",
+                "length": "3:32"
+            },
+            {
+                "id": 8,
+                "artistName": "Drake",
+                "songName": "We'll Be Fine (feat. Birdman)",
+                "albumPhoto": "takeCare",
+                "length": "4:08"
+            },
+            {
+                "id": 9,
+                "artistName": "Drake",
+                "songName": "Make Me Proud (feat. Nicki Minaj)",
+                "albumPhoto": "takeCare",
+                "length": "3:40"
+            },
+            {
+                "id": 10,
+                "artistName": "Drake",
+                "songName": "Lord Knows (feat. Rick Ross)",
+                "albumPhoto": "takeCare",
+                "length": "5:08"
+            },
+            {
+                "id": 11,
+                "artistName": "Drake",
+                "songName": "Cameras / Good Ones Go Interlude",
+                "albumPhoto": "takeCare",
+                "length": "7:15"
+            },
+            {
+                "id": 12,
+                "artistName": "Drake",
+                "songName": "Doing It Wrong (feat. Stevie Wonder)",
+                "albumPhoto": "takeCare",
+                "length": "4:25"
+            },
+            {
+                "id": 13,
+                "artistName": "Drake",
+                "songName": "The Real Her (feat. Lil Wayne and André 3000)",
+                "albumPhoto": "takeCare",
+                "length": "5:21"
+            },
+            {
+                "id": 14,
+                "artistName": "Drake",
+                "songName": "HYFR (Hell Ya Fucking Right) (feat. Lil Wayne)",
+                "albumPhoto": "takeCare",
+                "length": "3:27"
+            },
+            {
+                "id": 15,
+                "artistName": "Drake",
+                "songName": "The Ride",
+                "albumPhoto": "takeCare",
+                "length": "5:51"
+            }
+        ]
     },
     {
         "id": 5,
         "artistName": "Frank Ocean",
-        "songName": "Pyramids",
-        "albumPhoto": "channelOrange"
+        "albumName": "channel ORANGE",
+        "albumPhoto": "channelOrange",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "Frank Ocean",
+                "songName": "Start",
+                "albumPhoto": "channelOrange",
+                "length": "0:45"
+            },
+            {
+                "id": 1,
+                "artistName": "Frank Ocean",
+                "songName": "Thinkin Bout You",
+                "albumPhoto": "channelOrange",
+                "length": "3:20"
+            },
+            {
+                "id": 2,
+                "artistName": "Frank Ocean",
+                "songName": "Fertilizer",
+                "albumPhoto": "channelOrange",
+                "length": "0:40"
+            },
+            {
+                "id": 3,
+                "artistName": "Frank Ocean",
+                "songName": "Sierra Leone",
+                "albumPhoto": "channelOrange",
+                "length": "2:28"
+            },
+            {
+                "id": 4,
+                "artistName": "Frank Ocean",
+                "songName": "Sweet Life",
+                "albumPhoto": "channelOrange",
+                "length": "4:22"
+            },
+            {
+                "id": 5,
+                "artistName": "Frank Ocean, Earl Sweatshirt",
+                "songName": "Super Rich Kids",
+                "albumPhoto": "channelOrange",
+                "length": "5:04"
+            },
+            {
+                "id": 6,
+                "artistName": "Frank Ocean",
+                "songName": "Pilot Jones",
+                "albumPhoto": "channelOrange",
+                "length": "3:04"
+            },
+            {
+                "id": 7,
+                "artistName": "Frank Ocean",
+                "songName": "Crack Rock",
+                "albumPhoto": "channelOrange",
+                "length": "3:44"
+            },
+            {
+                "id": 8,
+                "artistName": "Frank Ocean",
+                "songName": "Pyramids",
+                "albumPhoto": "channelOrange",
+                "length": "9:54"
+            },
+            {
+                "id": 9,
+                "artistName": "Frank Ocean",
+                "songName": "Lost",
+                "albumPhoto": "channelOrange",
+                "length": "3:54"
+            },
+            {
+                "id": 10,
+                "artistName": "Frank Ocean",
+                "songName": "White",
+                "albumPhoto": "channelOrange",
+                "length": "1:16"
+            },
+            {
+                "id": 11,
+                "artistName": "Frank Ocean",
+                "songName": "Monks",
+                "albumPhoto": "channelOrange",
+                "length": "3:21"
+            },
+            {
+                "id": 12,
+                "artistName": "Frank Ocean",
+                "songName": "Bad Religion",
+                "albumPhoto": "channelOrange",
+                "length": "2:55"
+            },
+            {
+                "id": 13,
+                "artistName": "Frank Ocean",
+                "songName": "Pink Matter",
+                "albumPhoto": "channelOrange",
+                "length": "4:29"
+            },
+            {
+                "id": 14,
+                "artistName": "Frank Ocean",
+                "songName": "Forrest Gump",
+                "albumPhoto": "channelOrange",
+                "length": "3:15"
+            },
+            {
+                "id": 15,
+                "artistName": "Frank Ocean",
+                "songName": "End/Golden Girl",
+                "albumPhoto": "channelOrange",
+                "length": "8:50"
+            }
+        ]
     },
     {
         "id": 6,
         "artistName": "Khalid",
-        "songName": "Right Back",
-        "albumPhoto": "freeSpirit"
+        "albumName": "Right Back",
+        "albumPhoto": "freeSpirit",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "Khalid",
+                "songName": "Intro",
+                "albumPhoto": "freeSpirit",
+                "length": "1:46"
+            },
+            {
+                "id": 1,
+                "artistName": "Khalid",
+                "songName": "Bad Luck",
+                "albumPhoto": "freeSpirit",
+                "length": "3:51"
+            },
+            {
+                "id": 2,
+                "artistName": "Khalid",
+                "songName": "My Bad",
+                "albumPhoto": "freeSpirit",
+                "length": "2:44"
+            },
+            {
+                "id": 3,
+                "artistName": "Khalid",
+                "songName": "Better",
+                "albumPhoto": "freeSpirit",
+                "length": "3:49"
+            },
+            {
+                "id": 4,
+                "artistName": "Khalid",
+                "songName": "Talk",
+                "albumPhoto": "freeSpirit",
+                "length": "3:18"
+            },
+            {
+                "id": 5,
+                "artistName": "Khalid, SAFE",
+                "songName": "Don't Pretend",
+                "albumPhoto": "freeSpirit",
+                "length": "5:51"
+            },
+            {
+                "id": 6,
+                "artistName": "Khalid",
+                "songName": "Paradise",
+                "albumPhoto": "freeSpirit",
+                "length": "3:34"
+            },
+            {
+                "id": 7,
+                "artistName": "Khalid",
+                "songName": "Hundred",
+                "albumPhoto": "freeSpirit",
+                "length": "3:24"
+            },
+            {
+                "id": 8,
+                "artistName": "Khalid",
+                "songName": "Outta My Head",
+                "albumPhoto": "freeSpirit",
+                "length": "2:57"
+            },
+            {
+                "id": 9,
+                "artistName": "Khalid",
+                "songName": "Free Spirit",
+                "albumPhoto": "freeSpirit",
+                "length": "3:02"
+            },
+            {
+                "id": 10,
+                "artistName": "Khalid",
+                "songName": "Twenty One",
+                "albumPhoto": "freeSpirit",
+                "length": "3:04"
+            },
+            {
+                "id": 11,
+                "artistName": "Khalid",
+                "songName": "Bluffin'",
+                "albumPhoto": "freeSpirit",
+                "length": "3:19"
+            },
+            {
+                "id": 12,
+                "artistName": "Khalid",
+                "songName": "Self",
+                "albumPhoto": "freeSpirit",
+                "length": "3:49"
+            },
+            {
+                "id": 13,
+                "artistName": "Khalid",
+                "songName": "Alive",
+                "albumPhoto": "freeSpirit",
+                "length": "3:15"
+            },
+            {
+                "id": 14,
+                "artistName": "Khalid",
+                "songName": "Heaven",
+                "albumPhoto": "freeSpirit",
+                "length": "3:33"
+            }
+        ]
     },
     {
         "id": 7,
         "artistName": "Cannons",
-        "songName": "Hurricane",
-        "albumPhoto": "feverDream"
+        "albumName": "Hurricane",
+        "albumPhoto": "feverDream",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "Cannons",
+                "songName": "Come Alive",
+                "albumPhoto": "feverDream",
+                "length": "3:21"
+            },
+            {
+                "id": 1,
+                "artistName": "Cannons",
+                "songName": "Hurricane",
+                "albumPhoto": "feverDream",
+                "length": "3:01"
+            },
+            {
+                "id": 2,
+                "artistName": "Cannons",
+                "songName": "Strangers",
+                "albumPhoto": "feverDream",
+                "length": "3:12"
+            },
+            {
+                "id": 3,
+                "artistName": "Cannons",
+                "songName": "Tunnel of You",
+                "albumPhoto": "feverDream",
+                "length": "4:23"
+            },
+            {
+                "id": 4,
+                "artistName": "Cannons",
+                "songName": "Bad Dream",
+                "albumPhoto": "feverDream",
+                "length": "3:22"
+            },
+            {
+                "id": 5,
+                "artistName": "Cannons",
+                "songName": "Ruthless",
+                "albumPhoto": "feverDream",
+                "length": "3:25"
+            },
+            {
+                "id": 6,
+                "artistName": "Cannons",
+                "songName": "Only You",
+                "albumPhoto": "feverDream",
+                "length": "3:22"
+            },
+            {
+                "id": 7,
+                "artistName": "Cannons",
+                "songName": "Goodbye",
+                "albumPhoto": "feverDream",
+                "length": "4:22"
+            },
+            {
+                "id": 8,
+                "artistName": "Cannons",
+                "songName": "Purple Sun",
+                "albumPhoto": "feverDream",
+                "length": "4:01"
+            },
+            {
+                "id": 9,
+                "artistName": "Cannons",
+                "songName": "Afterglow",
+                "albumPhoto": "feverDream",
+                "length": "3:19"
+            },
+            {
+                "id": 10,
+                "artistName": "Cannons",
+                "songName": "Lightning",
+                "albumPhoto": "feverDream",
+                "length": "2:35"
+            }
+        ]
     },
     {
         "id": 8,
         "artistName": "The Weeknd",
-        "songName": "Alone Again",
-        "albumPhoto": "afterHours"
+        "albumName": "Alone Again",
+        "albumPhoto": "afterHours",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "CKay",
+                "songName": "dtf",
+                "albumPhoto": "ckay",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "CKay",
+                "songName": "love nwantiti (ah ah ah)",
+                "albumPhoto": "ckay",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "CKay",
+                "songName": "kalakuta",
+                "albumPhoto": "ckay",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "CKay, DJ Lambo",
+                "songName": "way (feat. DJ Lambo)",
+                "albumPhoto": "ckay",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "CKay",
+                "songName": "ski ski",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "CKay, Boj",
+                "songName": "oliver kahn (feat. Boj)",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            }
+        ]
     },
     {
         "id": 9,
         "artistName": "sapientdream",
-        "songName": "Painter",
-        "albumPhoto": "dreamIII"
+        "albumName": "Painter",
+        "albumPhoto": "dreamIII",
+        "songs": [
+            {
+                "id": 0,
+                "artistName": "CKay",
+                "songName": "dtf",
+                "albumPhoto": "ckay",
+                "length": "3:31"
+            },
+            {
+                "id": 1,
+                "artistName": "CKay",
+                "songName": "love nwantiti (ah ah ah)",
+                "albumPhoto": "ckay",
+                "length": "2:25"
+            },
+            {
+                "id": 2,
+                "artistName": "CKay",
+                "songName": "kalakuta",
+                "albumPhoto": "ckay",
+                "length": "2:39"
+            },
+            {
+                "id": 3,
+                "artistName": "CKay, DJ Lambo",
+                "songName": "way (feat. DJ Lambo)",
+                "albumPhoto": "ckay",
+                "length": "2:32"
+            },
+            {
+                "id": 4,
+                "artistName": "CKay",
+                "songName": "ski ski",
+                "albumPhoto": "ckay",
+                "length": "3:06"
+            },
+            {
+                "id": 5,
+                "artistName": "CKay, Boj",
+                "songName": "oliver kahn (feat. Boj)",
+                "albumPhoto": "ckay",
+                "length": "2:52"
+            }
+        ]
     }
 ]

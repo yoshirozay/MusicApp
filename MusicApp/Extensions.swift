@@ -185,5 +185,67 @@ func readSongFile(fileName: String) -> [Song] {
             print("Error reading JSON file: \(error)")
         }
     }
-    return [Song(songName: "", albumPhoto: "", artistName: "", id: 0)]
+    return [Song(songName: "", albumPhoto: "", artistName: "", id: 0, length: "")]
+}
+func readAlbumFile(fileName: String) -> [Album] {
+    if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
+        do {
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            let decoder = JSONDecoder()
+            let albums = try decoder.decode([Album].self, from: jsonData)
+            return albums
+        } catch {
+            print("Error reading JSON file: \(error)")
+        }
+    }
+    return [Album(id: 0, artistName: "", albumName: "", albumPhoto: "", songs: [Song(songName: "", albumPhoto: "", artistName: "", id: 0, length: "")])]
+}
+struct SnapCarouselHelper: UIViewRepresentable {
+    /// Retreive what ever properties you needed from the ScrollView with the help of @Binding
+    var pageWidth: CGFloat
+    var pageCount: Int
+    @Binding var index: Int
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+    
+    func makeUIView(context: Context) -> UIView {
+        return UIView()
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+        DispatchQueue.main.async {
+            if let scrollView = uiView.superview?.superview?.superview as? UIScrollView {
+                scrollView.decelerationRate = .fast
+                scrollView.delegate = context.coordinator
+                context.coordinator.pageCount = pageCount
+                context.coordinator.pageWidth = pageWidth
+            }
+        }
+    }
+    
+    class Coordinator: NSObject, UIScrollViewDelegate {
+        var parent: SnapCarouselHelper
+        var pageCount: Int = 0
+        var pageWidth: CGFloat = 0
+        init(parent: SnapCarouselHelper) {
+            self.parent = parent
+        }
+        
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            // print(scrollView.contentOffset.x)
+        }
+        
+        func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+            /// Adding Velocity too, for making perfect scroll animation
+            let targetEnd = scrollView.contentOffset.x + (velocity.x * 60)
+            let targetIndex = (targetEnd / pageWidth).rounded()
+            
+            /// Updating Current Index
+            let index = min(max(Int(targetIndex), 0), pageCount - 1)
+            parent.index = index
+            
+            targetContentOffset.pointee.x = targetIndex * pageWidth
+        }
+    }
 }

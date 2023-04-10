@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E907A20F29DDC23B004BDC8C /* MusicAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907A20E29DDC23B004BDC8C /* MusicAppApp.swift */; };
 		E907A21129DDC23B004BDC8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907A21029DDC23B004BDC8C /* ContentView.swift */; };
 		E907A21329DDC23D004BDC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907A21229DDC23D004BDC8C /* Assets.xcassets */; };
 		E907A21729DDC23D004BDC8C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907A21629DDC23D004BDC8C /* Preview Assets.xcassets */; };
@@ -17,11 +16,12 @@
 		E92954FC29DF4436001677E4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FB29DF4436001677E4 /* Extensions.swift */; };
 		E92954FE29DF5CCE001677E4 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FD29DF5CCE001677E4 /* Songs.swift */; };
 		E929550029DF5D4A001677E4 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92954FF29DF5D4A001677E4 /* Home.swift */; };
+		E929550229E0A8F9001677E4 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929550129E0A8F8001677E4 /* Albums.swift */; };
+		E929550329E0AFD7001677E4 /* albumList.json in Sources */ = {isa = PBXBuildFile; fileRef = E92954F929DF3AD3001677E4 /* albumList.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E907A20B29DDC23B004BDC8C /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E907A20E29DDC23B004BDC8C /* MusicAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAppApp.swift; sourceTree = "<group>"; };
 		E907A21029DDC23B004BDC8C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E907A21229DDC23D004BDC8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907A21429DDC23D004BDC8C /* MusicApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicApp.entitlements; sourceTree = "<group>"; };
@@ -31,6 +31,7 @@
 		E92954FB29DF4436001677E4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E92954FD29DF5CCE001677E4 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		E92954FF29DF5D4A001677E4 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E929550129E0A8F8001677E4 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +66,8 @@
 			children = (
 				E907A22729DDCA11004BDC8C /* songs.json */,
 				E92954F929DF3AD3001677E4 /* albumList.json */,
-				E907A20E29DDC23B004BDC8C /* MusicAppApp.swift */,
 				E92954FD29DF5CCE001677E4 /* Songs.swift */,
+				E929550129E0A8F8001677E4 /* Albums.swift */,
 				E92954FF29DF5D4A001677E4 /* Home.swift */,
 				E907A21029DDC23B004BDC8C /* ContentView.swift */,
 				E92954FB29DF4436001677E4 /* Extensions.swift */,
@@ -157,12 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E929550329E0AFD7001677E4 /* albumList.json in Sources */,
 				E92954FE29DF5CCE001677E4 /* Songs.swift in Sources */,
 				E92954FC29DF4436001677E4 /* Extensions.swift in Sources */,
 				E907A22929DDCA84004BDC8C /* songs.json in Sources */,
+				E929550229E0A8F9001677E4 /* Albums.swift in Sources */,
 				E907A21129DDC23B004BDC8C /* ContentView.swift in Sources */,
 				E929550029DF5D4A001677E4 /* Home.swift in Sources */,
-				E907A20F29DDC23B004BDC8C /* MusicAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
