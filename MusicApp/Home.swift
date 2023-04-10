@@ -136,7 +136,7 @@ class MusicObservable: ObservableObject {
     @Published var songs: [Song] = readSongFile(fileName: "songs")
     @Published var selectedSong: Song = Song(songName: "", albumPhoto: "", artistName: "", id: 4, length: "")
     @Published var albums: [Album] = readAlbumFile(fileName: "albumList")
-    @Published var selectedAlbum: Album = Album(id: 0, artistName: "CKay", albumName: "CKay The First", albumPhoto: "ckay", songs: [Song(songName: "dtf", albumPhoto: "ckay", artistName: "CKay", id: 0, length: "")])
+    @Published var selectedAlbum: Album = Album(id: 0, artistName: "", albumName: "", albumPhoto: "", songs: [Song(songName: "", albumPhoto: "", artistName: "", id: 0, length: "")])
     
     func showMediaPlayer() {
         withAnimation(.easeInOut(duration: 0.3)) {
@@ -154,9 +154,9 @@ class MusicObservable: ObservableObject {
         }
     }
     func selectAlbum(album: Album) {
-//        withAnimation {
+        withAnimation(.easeIn(duration: 0.05)) {
             selectedAlbum = album
-//        }
+        }
     }
 }
 
