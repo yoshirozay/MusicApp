@@ -62,8 +62,6 @@ struct Albums: View {
             }
         }
         .onChange(of: index) { newValue in
-            print("newValue = \(newValue)")
-            print("albumCount = \(music.albums.count)")
             guard newValue < music.albums.count else { return }
             music.selectAlbum(album: music.albums[newValue])
         }
