@@ -268,7 +268,7 @@
         "songs": [
             {
                 "id": 0,
-                "artistName": "Chance the Rapper, Kanye West, Chicago Children's Choir ",
+                "artistName": "Chance the Rapper, Kanye West ",
                 "songName": "All We Got",
                 "albumPhoto": "chance",
                 "length": "3:31"
@@ -282,7 +282,7 @@
             },
             {
                 "id": 2,
-                "artistName": "Chance the Rapper, Jeremih, Francis and the Lights",
+                "artistName": "Chance the Rapper, Jeremih",
                 "songName": "Summer Friends",
                 "albumPhoto": "chance",
                 "length": "2:39"

@@ -160,9 +160,7 @@ class MusicObservable: ObservableObject {
         }
     }
     func selectAlbum(album: Album) {
-        withAnimation(.easeIn(duration: 0.05)) {
-            selectedAlbum = album
-        }
+            self.selectedAlbum = album
     }
 }
 
