@@ -40,7 +40,7 @@ struct Songs: View {
                             }
                     }
                 }
-                .offset(y: -9)
+                .padding(.bottom, music.selectedSong.artistName == "" ? 0 : 70)
             }
         }
     }
@@ -70,10 +70,11 @@ struct IndividualSong: View {
                     .font(.title3)
                     .foregroundColor(.white)
             }
-            .padding()
+            .padding([.bottom, .horizontal])
             Rectangle()
                 .frame(height: 2)
                 .foregroundColor(.white)
+                .padding(.bottom)
         }
     }
 }

@@ -11,16 +11,13 @@ struct Albums: View {
     @ObservedObject var music:  MusicObservable
     @State private var index: Int = 0
     var body: some View {
-        GeometryReader {
-            let size = $0.size
-            VStack {
-                OpenedAlbum(music: music)
-                AlbumCarousel
-                    .frame(height: 120)
-                    .padding(.bottom, music.selectedSong.songName == "" ? 4 : 74)
-            }
+        
+        VStack {
+            OpenedAlbum(music: music)
+            AlbumCarousel
+                .frame(height: 120)
+                .padding(.bottom, music.selectedSong.songName == "" ? 4 : 74)
         }
-
     }
     var AlbumCarousel: some View {
         ZStack {
@@ -69,42 +66,31 @@ struct Albums: View {
 struct OpenedAlbum: View {
     @ObservedObject var music:  MusicObservable
     var body: some View {
-        GeometryReader {
-            let size = $0.size
-            VStack(spacing: 0) {
-                AlbumHeader(size: size)
-                SongList
-            }
+        VStack(spacing: 0) {
+            AlbumHeader
+            SongList
         }
     }
-    func AlbumHeader(size: CGSize) -> some View {
+    var AlbumHeader: some View {
         HStack {
-            GeometryReader {
-                let size = $0.size
-                HStack {
-                    Image(music.selectedAlbum.albumPhoto)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    //                                .frame(width: size.width/2, height: size.height)
-                        .frame(width: 175, height: 175)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .animation(nil, value: music.selectedAlbum)
-                    Spacer()
-                    VStack {
-                        Text(music.selectedAlbum.albumName)
-                            .font(.title3.weight(.semibold))
-                            .multilineTextAlignment(.center)
-                        Text(music.selectedAlbum.artistName)
-                            .font(.body.weight(.light))
-                    }
-                    Spacer()
-                }
-                .offset(y: 7)
+            Image(music.selectedAlbum.albumPhoto)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 175, height: 175)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .animation(nil, value: music.selectedAlbum)
+            Spacer()
+            VStack {
+                Text(music.selectedAlbum.albumName)
+                    .font(.title3.weight(.semibold))
+                    .multilineTextAlignment(.center)
+                Text(music.selectedAlbum.artistName)
+                    .font(.body.weight(.light))
             }
-            .frame(height: size.width/2 - 10)
-            //            .matchedGeometryEffect(id: "albumArt", in: animation)
+            Spacer()
         }
         .padding(.horizontal)
+        .padding(.bottom, 4)
     }
     var SongList: some View {
         ScrollView(showsIndicators: false) {

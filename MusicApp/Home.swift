@@ -11,17 +11,20 @@ import SwiftUI
 struct Main: View {
     @StateObject var music = MusicObservable()
     @Namespace private var animation
+    @State var selectedTab = "songs"
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             Songs(music: music)
-                .setTabItem("Listen Now", "play.circle.fill")
+                .setTabItem("Songs", "play.circle.fill")
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
+                .tag("songs")
             Albums(music: music)
-                .setTabItem("Browse", "square.grid.2x2.fill")
+                .setTabItem("Albums", "square.grid.2x2.fill")
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
-            SampleTab("Radio", "dot.radiowaves.left.and.right")
+                .tag("albums")
+//            SampleTab("Radio", "dot.radiowaves.left.and.right")
             SampleTab("Music", "play.square.stack")
             SampleTab("Search", "magnifyingglass")
         }
@@ -36,8 +39,10 @@ struct Main: View {
             }
         }
         .onChange(of: music.showingMediaPlayer) { newValue in
-            DispatchQueue.main.asyncAfter(deadline: .now() + (newValue ? 0.06 : 0.03)) {
-                music.toggleTabBar(newValue: newValue)
+            if selectedTab == "songs" {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (newValue ? 0.06 : 0.03)) {
+                    music.toggleTabBar(newValue: newValue)
+                }
             }
         }
     }
@@ -51,7 +56,6 @@ struct Main: View {
                 Rectangle()
                     .fill(.ultraThickMaterial)
                     .overlay {
-                        /// Music Info
                         MusicInfo(music: music, animation: animation)
                             .opacity(music.selectedSong.songName == "" ? 0 : 1)
                     }
