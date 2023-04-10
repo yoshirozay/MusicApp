@@ -98,7 +98,7 @@ struct OpenedSong: View {
                     PlayerView(size)
                         .offset(y: animateContent ? 0 : size.height)
                 }
-//                .padding(.top, safeArea.top + (safeArea.bottom == 0 ? 10 : 0))
+                .padding(.top, safeArea.top + (safeArea.bottom == 0 ? 10 : 0))
                 .padding(.bottom, safeArea.bottom == 0 ? 10 : safeArea.bottom)
                 .padding(.horizontal, 25)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
