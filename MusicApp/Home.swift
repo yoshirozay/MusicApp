@@ -24,9 +24,8 @@ struct Main: View {
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
                 .tag("albums")
-//            SampleTab("Radio", "dot.radiowaves.left.and.right")
-            SampleTab("Music", "play.square.stack")
-            SampleTab("Search", "magnifyingglass")
+            SampleTab("Playlist", "play.square.stack")
+            SampleTab("Social", "magnifyingglass")
         }
         .tint(.red)
         .safeAreaInset(edge: .bottom) {
