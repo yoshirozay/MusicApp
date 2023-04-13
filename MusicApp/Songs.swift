@@ -11,22 +11,13 @@ struct Song: Identifiable, Hashable, Decodable {
     let songName: String
     let albumPhoto: String
     let artistName: String
-    let id: Int
+    var id: Int = 0
     let length: String
 }
 
 struct Songs: View {
     @ObservedObject var music:  MusicObservable
     var body: some View {
-        ZStack {
-            Image("takeCare")
-                .resizable()
-                .opacity(0.85)
-                .scaledToFit()
-            
-            VisualEffectBlur(blurStyle: .systemMaterial)
-                .ignoresSafeArea()
-            
             ScrollView (showsIndicators: false){
                 VStack  {
                     ForEach(music.songs, id: \.self) { item in
@@ -42,9 +33,10 @@ struct Songs: View {
                 }
                 .padding(.bottom, music.selectedSong.artistName == "" ? 0 : 70)
             }
+            .background(
+                GlossyBackground()
+            )
         }
-    }
-    
 }
 
 struct IndividualSong: View {

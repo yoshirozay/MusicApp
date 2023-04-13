@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct Album: Identifiable, Hashable, Decodable {
+    let id: Int
+    let artistName: String
+    let albumName: String
+    let albumPhoto: String
+    let songs: [Song]
+}
+
 struct Albums: View {
     @ObservedObject var music:  MusicObservable
     @State private var index: Int = 0
@@ -18,15 +26,18 @@ struct Albums: View {
                 .frame(height: 120)
                 .padding(.bottom, music.selectedSong.songName == "" ? 4 : 74)
         }
+        .background(
+            GlossyBackground()
+        )
     }
     @ViewBuilder var OpenedAlbum: some View {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    AlbumHeader
-                    SongList
-                }
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+                AlbumHeader
+                SongList
             }
-            .id(music.selectedAlbum.id)
+        }
+        .id(music.selectedAlbum.id)
     }
     var AlbumHeader: some View {
         HStack {
@@ -50,31 +61,32 @@ struct Albums: View {
         .padding(.bottom, 4)
     }
     var SongList: some View {
-            VStack(spacing: 16)  {
-                ForEach(music.selectedAlbum.songs, id: \.self) { item in
-                    IndividualSong(song: item)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            withAnimation {
-                                music.selectSong(song: item)
-                                music.showMediaPlayer()
-                            }
+        VStack(spacing: 16)  {
+            ForEach(music.selectedAlbum.songs, id: \.self) { item in
+                IndividualSong(song: item)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation {
+                            music.selectSong(song: item)
+                            music.showMediaPlayer()
                         }
-                    Rectangle()
-                        .frame(height: 1)
-                }
-            } .padding([.horizontal, .top])
+                    }
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(.white)
+            }
+        } .padding([.horizontal, .top])
     }
     func IndividualSong(song: Song) -> some View {
         HStack {
             Text("#\(song.id+1)")
-                .font(.subheadline)
+                .font(.caption)
                 .frame(width: 40)
             VStack (alignment: .leading, spacing: 2) {
                 Text(song.songName)
                     .font(.body.weight(.medium))
                 Text(song.artistName)
-                    .font(.subheadline.weight(.light))
+                    .font(.caption.weight(.light))
             }
             Spacer()
             Text(song.length)
@@ -112,7 +124,7 @@ struct Albums: View {
                 }
                 .overlay {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(.red, lineWidth: 3.5)
+                        .stroke(.white, lineWidth: 3.5)
                         .frame(width: 120, height: 120)
                         .allowsHitTesting(false)
                 }
@@ -125,16 +137,10 @@ struct Albums: View {
     }
 }
 
+
 struct Albums_Previews: PreviewProvider {
     static var previews: some View {
         Albums(music: MusicObservable())
     }
 }
 
-struct Album: Identifiable, Hashable, Decodable {
-    let id: Int
-    let artistName: String
-    let albumName: String
-    let albumPhoto: String
-    let songs: [Song]
-}

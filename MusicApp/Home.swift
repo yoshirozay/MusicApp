@@ -24,7 +24,12 @@ struct Main: View {
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
                 .tag("albums")
-            SampleTab("Playlist", "play.square.stack")
+            Playlists(music: music)
+                .setTabItem("Playlists", "play.square.stack")
+                .setTabBarBackground(.init(.ultraThickMaterial))
+                .hideTabBar(music.hideTabBar)
+                .tag("playlists")
+//            SampleTab("Playlist", "play.square.stack")
             SampleTab("Social", "magnifyingglass")
         }
         .tint(.red)
@@ -140,8 +145,12 @@ class MusicObservable: ObservableObject {
     @Published var selectedSong: Song = Song(songName: "", albumPhoto: "", artistName: "", id: 4, length: "")
     @Published var albums: [Album] = readAlbumFile(fileName: "albumList")
     @Published var selectedAlbum: Album = Album(id: 0, artistName: "", albumName: "", albumPhoto: "", songs: [Song(songName: "", albumPhoto: "", artistName: "", id: 0, length: "")])
+    @Published var playlists = [Playlist]()
+    @Published var playlists2 = [Playlist]()
+    @Published var selectedPlaylist = Playlist(id: 0, playlistName: "Friday Night", playlistPhoto: "ckay", songs: readSongFile(fileName: "songs"), monthlyListeners: 6432321)
     init() {
         selectAlbum(album: albums[1])
+        createPlaylists()
     }
     func showMediaPlayer() {
         withAnimation(.easeInOut(duration: 0.3)) {
@@ -159,7 +168,42 @@ class MusicObservable: ObservableObject {
         }
     }
     func selectAlbum(album: Album) {
-            self.selectedAlbum = album
+            selectedAlbum = album
+    }
+    func selectPlaylist(playlist: Playlist) {
+        withAnimation {
+            selectedPlaylist = playlist
+        }
+    }
+    func createPlaylists() {
+        let playlistNames = ["Playlist 1", "Playlist 2", "Playlist 3", "Playlist 4", "Playlist 5", "Playlist 6"]
+        for (index, item) in playlistNames.enumerated() {
+            var songs = [Song]()
+            while songs.count < 12 {
+                songs.append(getRandomSong(playlistSongs: songs))
+            }
+            let playlist = Playlist(id: index, playlistName: item, playlistPhoto: songs[0].albumPhoto, songs: songs, monthlyListeners: Int.random(in: 1_000_000...100_000_000))
+            playlists.append(playlist)
+            playlists2.append(playlist)
+        }
+    }
+
+    func getRandomSong(playlistSongs: [Song]) -> Song {
+        var song: Song
+        repeat {
+            guard let randomAlbum = albums.randomElement() else {
+                fatalError("There are no albums in the library.")
+            }
+            guard let randomSong = randomAlbum.songs.randomElement() else {
+                fatalError("There are no songs in the selected album.")
+            }
+            song = randomSong
+        } while playlistSongs.contains(where: { $0 == song })
+        
+        // Set the song ID to the current count of the playlistSongs array minus 1
+        song.id = playlistSongs.count
+        
+        return song
     }
 }
 
