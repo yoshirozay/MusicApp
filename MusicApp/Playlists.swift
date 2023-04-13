@@ -171,19 +171,15 @@ struct OpenedPlaylist: View {
     var body: some View {
         GeometryReader {
             let size = $0.size
-            var dragProgress = 1.0 - (-offsetX.width / (300))
+            var dragProgress = 1.0 - (-offsetX.width / (800))
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0){
-                        //                    if animation != true {
                         HeaderView(offsetX: offsetX)
                         SongList
-                        //                    }
                     }
                     .opacity(animation ? 0 : 1)
-//                    .opacity(animation ? 0 : offsetX.width < 0 ? dragProgress : 1)
-//                    .opacity(offsetX.width < 0 ? 1 - offsetX.width : 1)
-//                    .offset(x: (offsetX.width < 0 ? -offsetX.width/2 : 0), y: (offsetX.width < 0 ? -offsetX.width/2 : 0))
+
                 }
                 .background(
                     ZStack {
@@ -208,17 +204,18 @@ struct OpenedPlaylist: View {
                 }
             }
             .matchedGeometryEffect(id: "background", in: animation2)
-            .frame(width: size.width + (offsetX.width < 0 && offsetX.width > -250 ? offsetX.width : 0), height: size.height + ((offsetX.width < 0 && offsetX.width*4 < size.height-1) ? offsetX.width*4 : 0))
+            .frame(width: size.width - shrinkWidth(frame: size.width), height: size.height - shrinkHeight(frame: size.height))
             .cornerRadius(deviceCornerRadius/2)
             .clipped()
-            .offset(x: offsetX.width < 0 ? offsetX.width/3 : 0)
-//            .offset(x: (offsetX.width < 0 ? -offsetX.width/2 : 0), y: (offsetX.width < 0 ? -offsetX.width/2 : 0))
-//                    , y: offsetX.width/2)
+//            .offset(x: offsetX.width/3)
+
             .gesture(
                 DragGesture()
                     .updating($offsetX) { value, state, transaction in
                         withAnimation {
-                            state = value.translation
+                            if value.translation.width < 0 {
+                                state = value.translation
+                            }
                         }
                     }
                     .updating($dragProgression) { value, state, transaction in
@@ -241,7 +238,21 @@ struct OpenedPlaylist: View {
             }
         }
     }
+    func shrinkWidth(frame: Double) -> Double  {
 
+        if -offsetX.width < frame {
+            return -offsetX.width
+        } else {
+            return 0.0
+        }
+    }
+    func shrinkHeight(frame: Double) -> Double  {
+        if -offsetX.width*4 < frame {
+            return -offsetX.width*4
+        } else {
+            return 0.0
+        }
+    }
     @ViewBuilder
     func HeaderView(offsetX: CGSize) -> some View {
         GeometryReader{proxy in
@@ -252,7 +263,7 @@ struct OpenedPlaylist: View {
             Image(music.selectedPlaylist.playlistPhoto)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: size.width, height: height > 0 ? height : 0,alignment: .top)
+                .frame(width: size.width, height: height > 0 ? height : 0, alignment: .top)
                 .matchedGeometryEffect(id: music.selectedPlaylist.id, in: animation2)
                 .overlay(content: {
                     ZStack(alignment: .topLeading) {
@@ -323,7 +334,7 @@ struct OpenedPlaylist: View {
                 .offset(y: -minY)
         }
         //        .opacity(isAnimating ? 1 : 0)
-        .frame(height: 250 + (offsetX.width < 0 && offsetX.width > -250 ? offsetX.width*1.3  : 0))
+        .frame(height: 250 - shrinkWidth(frame: 250))
     }
     @ViewBuilder
     var SongList: some View{
