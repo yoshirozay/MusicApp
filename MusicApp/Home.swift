@@ -154,6 +154,7 @@ class MusicObservable: ObservableObject {
     }
     func showMediaPlayer() {
         withAnimation(.easeInOut(duration: 0.3)) {
+            guard selectedSong.songName != "" else { return }
             showingMediaPlayer.toggle()
         }
     }

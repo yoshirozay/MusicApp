@@ -76,6 +76,7 @@ struct OpenedSong: View {
     var animation: Namespace.ID
     @State private var animateContent: Bool = false
     @State private var offsetY: CGFloat = 0
+    @State private var offsetX: CGFloat = 0
     @State private var animateDrake: Bool = false
     var body: some View {
         GeometryReader {
@@ -103,10 +104,12 @@ struct OpenedSong: View {
                 DragGesture()
                     .onChanged({ value in
                         let translationY = value.translation.height
+                        let translationX = value.translation.width
                         offsetY = (translationY > 0 ? translationY : 0)
+                        offsetX = (translationX < 0 ? translationX : 0)
                     }).onEnded({ value in
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            if (offsetY + (value.velocity.height * 0.3)) > size.height * 0.4 {
+                            if (offsetY + (value.velocity.height * 0.3)) > size.height * 0.4 || (-offsetX - (value.velocity.width * 0.3)) > size.width * 0.4 {
                                 music.showMediaPlayer()
                                 animateContent = false
                                 animateDrake = false

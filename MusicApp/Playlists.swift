@@ -15,45 +15,7 @@ struct Playlist: Identifiable, Hashable, Decodable {
     let monthlyListeners: Int
     var offset : CGFloat = 0
 }
-//ZStack {
-//    if !music.showingMediaPlayer {
-//        GeometryReader {
-//            let size = $0.size
-//
-//            Image(music.selectedSong.albumPhoto)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: size.width, height: size.height)
-//                .clipShape(RoundedRectangle(cornerRadius: music.showingMediaPlayer ? 15 : 5, style: .continuous))
-//        }
-//        .matchedGeometryEffect(id: "albumArt", in: animation)
-//    }
-//}
-//.frame(width: 45, height: 45)
-//func AlbumArtwork(cornerProgress: CGFloat, size: CGSize) -> some View {
-//    Group {
-//        Capsule()
-//            .fill(.gray)
-//            .frame(width: 40, height: 5)
-//            .opacity(animateContent ? cornerProgress : 0)
-//            .offset(y: animateContent ? 0 : size.height)
-//            .clipped()
-//
-//        GeometryReader {
-//            let size = $0.size
-//
-//            Image(music.selectedSong.albumPhoto)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: size.width, height: size.height)
-//                .clipShape(RoundedRectangle(cornerRadius: animateContent ? 15 : 5, style: .continuous))
-//        }
-//        .matchedGeometryEffect(id: "albumArt", in: animation)
-//        .frame(height: size.width - 50)
-//        .padding(.vertical, size.height < 700 ? 10 : 30)
-//
-//    }
-//}
+
 struct Playlists: View {
     @ObservedObject var music: MusicObservable
     @State var showingPlaylist = false
@@ -77,6 +39,7 @@ struct Playlists: View {
     @ViewBuilder var ShowingPlaylist: some View {
         if showingPlaylist {
             OpenedPlaylist(music: music, animation2: animation2, showingPlaylist: $showingPlaylist)
+                .transition(.asymmetric(insertion: .identity, removal: .offset(y: -5)))
                 .clipped()
                 .ignoresSafeArea()
         }
@@ -96,31 +59,37 @@ struct PlaylistCarousel: View {
                 ForEach(music.playlists.reversed()){ item in
                     HStack{
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
-                            
-                            Image(item.playlistPhoto)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width:
-                                        175
-                                       - CGFloat(item.id - scrolled) * 25
-                                       , height: 175 - CGFloat(item.id - scrolled) * 25)
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay {
-                                    ZStack {
-                                        if item.id - scrolled <= 0  {
-                                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                                .stroke(.white, lineWidth: 3.5)
-                                                .frame(width: 175, height: 175)
-                                                .allowsHitTesting(false)
+                            if !showingPlaylist || item.id - scrolled > 0 {
+                                Image(item.playlistPhoto)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width:
+                                            175
+                                           - CGFloat(item.id - scrolled) * 25
+                                           , height: 175 - CGFloat(item.id - scrolled) * 25)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                    .overlay {
+                                        ZStack {
+                                            if item.id - scrolled <= 0  {
+                                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                    .fill(.clear)
+                                                    .frame(width: 175, height: 175)
+                                                    .matchedGeometryEffect(id: "background", in: animation2)
+                                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                    .stroke(.white, lineWidth: 3.5)
+                                                    .frame(width: 175, height: 175)
+                                                    .allowsHitTesting(false)
+                                            }
                                         }
                                     }
-                                }
-                                .matchedGeometryEffect(id: item.id, in: animation2)
-                            Text(item.playlistName)
-                                .foregroundColor(.black)
-                                .font(.callout.weight(.semibold))
-                                .offset(x: 2, y: 24)
-                                .opacity(item.id - scrolled <= 0 ? 1 : 0)
+                                    .matchedGeometryEffect(id: item.id, in: animation2)
+                                
+                                Text(item.playlistName)
+                                    .foregroundColor(.black)
+                                    .font(.callout.weight(.semibold))
+                                    .offset(x: 2, y: 24)
+                                    .opacity(item.id - scrolled <= 0 ? 1 : 0)
+                            }
                         }
                         .frame(width: size.width - 120)
                         .offset(x: item.id - scrolled <= 3 ? CGFloat(item.id - scrolled) * 90 : 60)
@@ -194,67 +163,87 @@ struct OpenedPlaylist: View {
     @State var headerOffsets: (CGFloat,CGFloat) = (0,0)
     var animation2: Namespace.ID
     @State var isAnimating = false
-    @State private var offsetX: CGFloat = 0
+    @GestureState private var offsetX: CGSize = .zero
+    @GestureState var dragProgression: CGFloat = 0
     @Binding var showingPlaylist: Bool
     @State var animateBackgroundImage = false
+    @State var animation = true
     var body: some View {
-
-        VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 0){
-                    HeaderView
-                    SongList
-                    
+        GeometryReader {
+            let size = $0.size
+            var dragProgress = 1.0 - (-offsetX.width / (300))
+            VStack {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 0){
+                        //                    if animation != true {
+                        HeaderView(offsetX: offsetX)
+                        SongList
+                        //                    }
+                    }
+                    .opacity(animation ? 0 : 1)
+//                    .opacity(animation ? 0 : offsetX.width < 0 ? dragProgress : 1)
+//                    .opacity(offsetX.width < 0 ? 1 - offsetX.width : 1)
+//                    .offset(x: (offsetX.width < 0 ? -offsetX.width/2 : 0), y: (offsetX.width < 0 ? -offsetX.width/2 : 0))
+                }
+                .background(
+                    ZStack {
+                        Image("ckay")
+                            .resizable()
+                            .opacity(0.5)
+                            .scaledToFill()
+                            .opacity(animateBackgroundImage ? 1 : 0)
+                        VisualEffectBlur(blurStyle: .systemMaterial)
+                            .ignoresSafeArea()
+                    }
+                )
+                .coordinateSpace(name: "SCROLL")
+                .ignoresSafeArea(.container, edges: .vertical)
+                .onAppear {
+                    withAnimation(.linear(duration: 0.4)) {
+                        isAnimating = true
+                    }
+                    withAnimation(.easeIn(duration: 0.4)) {
+                        animateBackgroundImage = true
+                    }
                 }
             }
-            .background(
-                ZStack {
-                    Image("ckay")
-                        .resizable()
-                        .opacity(0.5)
-                        .scaledToFill()
-                        .opacity(animateBackgroundImage ? 1 : 0)
-                    VisualEffectBlur(blurStyle: .systemMaterial)
-                        .ignoresSafeArea()
-                }
+            .matchedGeometryEffect(id: "background", in: animation2)
+            .frame(width: size.width + (offsetX.width < 0 && offsetX.width > -250 ? offsetX.width : 0), height: size.height + ((offsetX.width < 0 && offsetX.width*4 < size.height-1) ? offsetX.width*4 : 0))
+            .cornerRadius(deviceCornerRadius/2)
+            .clipped()
+            .offset(x: offsetX.width < 0 ? offsetX.width/3 : 0)
+//            .offset(x: (offsetX.width < 0 ? -offsetX.width/2 : 0), y: (offsetX.width < 0 ? -offsetX.width/2 : 0))
+//                    , y: offsetX.width/2)
+            .gesture(
+                DragGesture()
+                    .updating($offsetX) { value, state, transaction in
+                        withAnimation {
+                            state = value.translation
+                        }
+                    }
+                    .updating($dragProgression) { value, state, transaction in
+                        state = value.translation.width
+                    }
             )
-            .coordinateSpace(name: "SCROLL")
-            .ignoresSafeArea(.container, edges: .vertical)
-            .onAppear {
-                withAnimation(.linear(duration: 0.4)) {
-                    isAnimating = true
+            .onChange(of: offsetX) { offset in
+                if (-offset.width - (dragProgression * 0.3)) >= 200 {
+                    animateBackgroundImage = false
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        animation = true
+                        showingPlaylist = false
+                     }
                 }
-                withAnimation(.easeIn(duration: 0.4)) {
-                    animateBackgroundImage = true
+            }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    animation = false
                 }
             }
         }
-        .clipped()
-        .offset(x: offsetX)
-        .gesture(
-            DragGesture()
-                .onChanged({ value in
-                    let translationX = value.translation.width
-                    offsetX = (translationX < 0 ? translationX : 0)
-                    
-                })
-                .onEnded({ value in
-                    if (-offsetX - (value.velocity.width * 0.3)) >= 100 {
-                        animateBackgroundImage = false
-                    }
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        if (-offsetX - (value.velocity.width * 0.3)) >= 100 {
-                            offsetX = -400
-                                showingPlaylist = false
-                        } else {
-                            offsetX = 0
-                        }
-                    }
-                })
-        )
     }
+
     @ViewBuilder
-    var HeaderView: some View {
+    func HeaderView(offsetX: CGSize) -> some View {
         GeometryReader{proxy in
             let minY = proxy.frame(in: .named("SCROLL")).minY
             let size = proxy.size
@@ -267,7 +256,7 @@ struct OpenedPlaylist: View {
                 .matchedGeometryEffect(id: music.selectedPlaylist.id, in: animation2)
                 .overlay(content: {
                     ZStack(alignment: .topLeading) {
-//                        .background(Color.red)
+                        //                        .background(Color.red)
                         ZStack(alignment: .bottom) {
                             LinearGradient(colors: [
                                 .clear,
@@ -303,22 +292,22 @@ struct OpenedPlaylist: View {
                             .padding(.bottom,25)
                             .frame(maxWidth: .infinity,alignment: .leading)
                         }
-//                        Button(action: {
-
-//                        }) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.black.opacity(0.2))
-//                                    .overlay (
-                                        Image(systemName: "chevron.left")
-                                            .foregroundColor(.white)
-                                            .font(.title3.weight(.semibold))
-//                                    )
-                            }
-//                        }
-                            .frame(width: 30, height: 30)
-
+                        //                        Button(action: {
+                        
+                        //                        }) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black.opacity(0.2))
+                            //                                    .overlay (
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                                .font(.title3.weight(.semibold))
+                            //                                    )
+                        }
+                        //                        }
+                        .frame(width: 30, height: 30)
+                        
                         .contentShape(Circle())
                         .onTapGesture {
                             animateBackgroundImage = false
@@ -333,8 +322,8 @@ struct OpenedPlaylist: View {
                 .cornerRadius(1)
                 .offset(y: -minY)
         }
-        .opacity(isAnimating ? 1 : 0)
-        .frame(height: 250)
+        //        .opacity(isAnimating ? 1 : 0)
+        .frame(height: 250 + (offsetX.width < 0 && offsetX.width > -250 ? offsetX.width*1.3  : 0))
     }
     @ViewBuilder
     var SongList: some View{

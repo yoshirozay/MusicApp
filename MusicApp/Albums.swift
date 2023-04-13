@@ -124,7 +124,7 @@ struct Albums: View {
                 }
                 .overlay {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(.white, lineWidth: 3.5)
+                        .stroke(.red, lineWidth: 3.5)
                         .frame(width: 120, height: 120)
                         .allowsHitTesting(false)
                 }
