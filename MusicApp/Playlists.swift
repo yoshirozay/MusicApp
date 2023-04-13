@@ -171,7 +171,6 @@ struct OpenedPlaylist: View {
     var body: some View {
         GeometryReader {
             let size = $0.size
-            var dragProgress = 1.0 - (-offsetX.width / (800))
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0){
@@ -205,7 +204,7 @@ struct OpenedPlaylist: View {
             }
             .matchedGeometryEffect(id: "background", in: animation2)
             .frame(width: size.width - shrinkWidth(frame: size.width), height: size.height - shrinkHeight(frame: size.height))
-            .cornerRadius(deviceCornerRadius/2)
+            .cornerRadius(deviceCornerRadius/2.5)
             .clipped()
 //            .offset(x: offsetX.width/3)
 
@@ -223,7 +222,7 @@ struct OpenedPlaylist: View {
                     }
             )
             .onChange(of: offsetX) { offset in
-                if (-offset.width - (dragProgression * 0.3)) >= 200 {
+                if (-offset.width - (dragProgression * 0.3)) >= 270 {
                     animateBackgroundImage = false
                     withAnimation(.easeInOut(duration: 0.3)) {
                         animation = true
@@ -232,7 +231,7 @@ struct OpenedPlaylist: View {
                 }
             }
             .onAppear {
-                withAnimation(.easeInOut(duration: 0.3)) {
+                withAnimation(.easeInOut(duration: 0.4)) {
                     animation = false
                 }
             }
@@ -240,15 +239,15 @@ struct OpenedPlaylist: View {
     }
     func shrinkWidth(frame: Double) -> Double  {
 
-        if -offsetX.width < frame {
-            return -offsetX.width
+        if -offsetX.width/1.5 < frame {
+            return -offsetX.width/1.5
         } else {
             return 0.0
         }
     }
     func shrinkHeight(frame: Double) -> Double  {
-        if -offsetX.width*4 < frame {
-            return -offsetX.width*4
+        if -offsetX.width*3.1 < frame {
+            return -offsetX.width*3.1
         } else {
             return 0.0
         }
@@ -302,6 +301,8 @@ struct OpenedPlaylist: View {
                             .padding(.horizontal)
                             .padding(.bottom,25)
                             .frame(maxWidth: .infinity,alignment: .leading)
+                            .opacity(offsetX.width >= 0 ? 1 : 0)
+                            .animation(.easeOut(duration: 0.3), value: offsetX.width)
                         }
                         //                        Button(action: {
                         
@@ -334,7 +335,8 @@ struct OpenedPlaylist: View {
                 .offset(y: -minY)
         }
         //        .opacity(isAnimating ? 1 : 0)
-        .frame(height: 250 - shrinkWidth(frame: 250))
+//        .frame(height: 250 - shrinkWidth(frame: 250))
+        .frame(height: 250)
     }
     @ViewBuilder
     var SongList: some View{
@@ -366,6 +368,7 @@ struct OpenedPlaylist: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .frame(width: 30, alignment: .leading)
+                .animation(nil, value: music.selectedPlaylist)
             HStack(spacing: 12) {
                 Image(item.albumPhoto)
                     .resizable()
