@@ -59,10 +59,11 @@ struct PlaylistCarousel: View {
                 ForEach(music.playlists.reversed()){ item in
                     HStack{
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
-                            if !showingPlaylist || item.id - scrolled > 0 {
+
                                 Image(item.playlistPhoto)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
+                                    .matchedGeometryEffect(id: item.id, in: animation2)
                                     .frame(width:
                                             175
                                            - CGFloat(item.id - scrolled) * 25
@@ -82,15 +83,14 @@ struct PlaylistCarousel: View {
                                             }
                                         }
                                     }
-                                    .matchedGeometryEffect(id: item.id, in: animation2)
                                 
                                 Text(item.playlistName)
                                     .foregroundColor(.black)
                                     .font(.callout.weight(.semibold))
                                     .offset(x: 2, y: 24)
                                     .opacity(item.id - scrolled <= 0 ? 1 : 0)
-                            }
                         }
+                        
                         .frame(width: size.width - 120)
                         .offset(x: item.id - scrolled <= 3 ? CGFloat(item.id - scrolled) * 90 : 60)
                         Spacer()
@@ -113,7 +113,7 @@ struct PlaylistCarousel: View {
                             
                         }))
                     .onTapGesture {
-                        withAnimation(.easeIn(duration: 0.2)) {
+                        withAnimation(.linear(duration: 0.2)) {
                             music.selectedPlaylist = item
                             showingPlaylist = true
                         }
@@ -176,8 +176,8 @@ struct OpenedPlaylist: View {
                     VStack(spacing: 0){
                         HeaderView(offsetX: offsetX)
                         SongList
+                            .opacity(animation ? 0 : 1)
                     }
-                    .opacity(animation ? 0 : 1)
 
                 }
                 .background(
@@ -224,10 +224,12 @@ struct OpenedPlaylist: View {
             .onChange(of: offsetX) { offset in
                 if (-offset.width - (dragProgression * 0.3)) >= 270 {
                     animateBackgroundImage = false
-                    withAnimation(.easeInOut(duration: 0.3)) {
+//                    withAnimation(.easeInOut(duration: 0.3)) {
+                    withAnimation(.linear(duration: 0.05)) {
                         animation = true
                         showingPlaylist = false
-                     }
+                    }
+//                     }
                 }
             }
             .onAppear {
@@ -262,8 +264,11 @@ struct OpenedPlaylist: View {
             Image(music.selectedPlaylist.playlistPhoto)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: size.width, height: height > 0 ? height : 0, alignment: .top)
                 .matchedGeometryEffect(id: music.selectedPlaylist.id, in: animation2)
+                .onAppear {
+                    print("MATCHED 1 = \(music.selectedPlaylist.id)")
+                }
+                .frame(width: size.width, height: height > 0 ? height : 0, alignment: .top)
                 .overlay(content: {
                     ZStack(alignment: .topLeading) {
                         //                        .background(Color.red)
