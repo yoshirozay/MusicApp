@@ -60,35 +60,7 @@ struct PlaylistCarousel: View {
                     HStack{
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
                             if !showingPlaylist || item.id - scrolled > 0 {
-                                Image(item.playlistPhoto)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .matchedGeometryEffect(id: item.id, in: animation2)
-                                    .frame(width:
-                                            175
-                                           - CGFloat(item.id - scrolled) * 25
-                                           , height: 175 - CGFloat(item.id - scrolled) * 25)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                    .overlay {
-                                        ZStack {
-                                            if item.id - scrolled <= 0  {
-                                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                                    .fill(.clear)
-                                                    .frame(width: 175, height: 175)
-                                                    .matchedGeometryEffect(id: "background", in: animation2)
-                                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                                    .stroke(.white, lineWidth: 3.5)
-                                                    .frame(width: 175, height: 175)
-                                                    .allowsHitTesting(false)
-                                            }
-                                        }
-                                    }
-                                
-                                Text(item.playlistName)
-                                    .foregroundColor(.black)
-                                    .font(.callout.weight(.semibold))
-                                    .offset(x: 2, y: 24)
-                                    .opacity(item.id - scrolled <= 0 ? 1 : 0)
+                                playlistArtwork(item: item)
                             }
                         }
                         
@@ -98,17 +70,15 @@ struct PlaylistCarousel: View {
                     }
                     .frame(width: size.width)
                     .contentShape(Rectangle())
+                    
                     .offset(x: item.offset)
                     .gesture(DragGesture().onChanged({ (value) in
-                        
                         withAnimation{
                             disableDragForLastPlaylist(playlist: item, value: value, size: size)
                         }
                     })
                         .onEnded({ (value) in
-                            
                             withAnimation{
-                                
                                 navigatePlaylists(playlist: item, value: value, size: size)
                             }
                             
@@ -123,7 +93,40 @@ struct PlaylistCarousel: View {
             }
             .frame(height: 200, alignment: .leading)
         }
-        //        .matchedGeometryEffect(id: "albumArt", in: animation)
+    }
+    func playlistArtwork(item: Playlist) -> some View {
+        Group {
+            Image(item.playlistPhoto)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .matchedGeometryEffect(id: item.id, in: animation2)
+                .frame(width:
+                        175
+                       - CGFloat(item.id - scrolled) * 25
+                       , height: 175 - CGFloat(item.id - scrolled) * 25)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay {
+                    ZStack {
+                        if item.id - scrolled <= 0  {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.clear)
+                                .frame(width: 175, height: 175)
+                                .matchedGeometryEffect(id: "background", in: animation2)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .stroke(.white, lineWidth: 3.5)
+                                .frame(width: 175, height: 175)
+                                .allowsHitTesting(false)
+                                .opacity(showingPlaylist ? 0 : 1)
+                        }
+                    }
+                }
+            
+            Text(item.playlistName)
+                .foregroundColor(.black)
+                .font(.callout.weight(.semibold))
+                .offset(x: 2, y: 24)
+                .opacity(item.id - scrolled <= 0 ? 1 : 0)
+        }
     }
     func disableDragForLastPlaylist(playlist: Playlist, value: DragGesture.Value, size: CGSize) {
         if value.translation.width < 0 && playlist.id != music.playlists.last!.id{
@@ -163,12 +166,12 @@ struct OpenedPlaylist: View {
     @ObservedObject var music: MusicObservable
     @State var headerOffsets: (CGFloat,CGFloat) = (0,0)
     var animation2: Namespace.ID
-    @State var isAnimating = false
     @GestureState private var offsetX: CGSize = .zero
     @GestureState var dragProgression: CGFloat = 0
     @Binding var showingPlaylist: Bool
     @State var animateBackgroundImage = false
     @State var animation = true
+    @State var showingDetails = true
     var body: some View {
         GeometryReader {
             let size = $0.size
@@ -176,7 +179,9 @@ struct OpenedPlaylist: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0){
                         HeaderView(offsetX: offsetX)
-                        SongList
+                        if showingDetails {
+                            SongList
+                        }
                     }
                     .opacity(animation ? 0 : 1)
 
@@ -195,20 +200,14 @@ struct OpenedPlaylist: View {
                 .coordinateSpace(name: "SCROLL")
                 .ignoresSafeArea(.container, edges: .vertical)
                 .onAppear {
-                    withAnimation(.linear(duration: 0.4)) {
-                        isAnimating = true
-                    }
                     withAnimation(.easeIn(duration: 0.4)) {
                         animateBackgroundImage = true
                     }
                 }
             }
             .matchedGeometryEffect(id: "background", in: animation2)
-            .frame(width: size.width - shrinkWidth(frame: size.width), height: size.height - shrinkHeight(frame: size.height))
-            .cornerRadius(deviceCornerRadius/2.5)
+            .frame(width: size.width - shrinkWidth(frame: size.width), height: showingDetails ? size.height - shrinkHeight(frame: size.height) : 250)
             .clipped()
-//            .offset(x: offsetX.width/3)
-
             .gesture(
                 DragGesture()
                     .updating($offsetX) { value, state, transaction in
@@ -225,12 +224,10 @@ struct OpenedPlaylist: View {
             .onChange(of: offsetX) { offset in
                 if (-offset.width - (dragProgression * 0.3)) >= 270 {
                     animateBackgroundImage = false
-//                    withAnimation(.easeInOut(duration: 0.3)) {
                     withAnimation(.linear(duration: 0.15)) {
                         animation = true
                         showingPlaylist = false
                     }
-//                     }
                 }
             }
             .onAppear {
@@ -266,13 +263,9 @@ struct OpenedPlaylist: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .matchedGeometryEffect(id: music.selectedPlaylist.id, in: animation2)
-                .onAppear {
-                    print("MATCHED 1 = \(music.selectedPlaylist.id)")
-                }
                 .frame(width: size.width, height: height > 0 ? height : 0, alignment: .top)
                 .overlay(content: {
                     ZStack(alignment: .topLeading) {
-                        //                        .background(Color.red)
                         ZStack(alignment: .bottom) {
                             LinearGradient(colors: [
                                 .clear,
@@ -307,28 +300,23 @@ struct OpenedPlaylist: View {
                             .padding(.horizontal)
                             .padding(.bottom,25)
                             .frame(maxWidth: .infinity,alignment: .leading)
-                            .opacity(offsetX.width >= 0 ? 1 : 0)
+                            .opacity(offsetX.width >= 0 ? showingDetails ? 1 : 0 : 0)
                             .animation(.easeOut(duration: 0.3), value: offsetX.width)
                         }
-                        //                        Button(action: {
-                        
-                        //                        }) {
+
                         ZStack {
                             Circle()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(.black.opacity(0.2))
-                            //                                    .overlay (
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
                                 .font(.title3.weight(.semibold))
-                            //                                    )
                         }
-                        //                        }
                         .frame(width: 30, height: 30)
-                        
                         .contentShape(Circle())
                         .onTapGesture {
                             animateBackgroundImage = false
+                            showingDetails = false
                             withAnimation {
                                 showingPlaylist = false
                             }
@@ -337,11 +325,9 @@ struct OpenedPlaylist: View {
                         .padding(.top)
                     }
                 })
-                .cornerRadius(1)
+                .cornerRadius(showingPlaylist ? 1 : 10)
                 .offset(y: -minY)
         }
-        //        .opacity(isAnimating ? 1 : 0)
-//        .frame(height: 250 - shrinkWidth(frame: 250))
         .frame(height: 250)
     }
     @ViewBuilder
