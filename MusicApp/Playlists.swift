@@ -59,7 +59,7 @@ struct PlaylistCarousel: View {
                 ForEach(music.playlists.reversed()){ item in
                     HStack{
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
-
+                            if !showingPlaylist || item.id - scrolled > 0 {
                                 Image(item.playlistPhoto)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -89,6 +89,7 @@ struct PlaylistCarousel: View {
                                     .font(.callout.weight(.semibold))
                                     .offset(x: 2, y: 24)
                                     .opacity(item.id - scrolled <= 0 ? 1 : 0)
+                            }
                         }
                         
                         .frame(width: size.width - 120)
@@ -176,8 +177,8 @@ struct OpenedPlaylist: View {
                     VStack(spacing: 0){
                         HeaderView(offsetX: offsetX)
                         SongList
-                            .opacity(animation ? 0 : 1)
                     }
+                    .opacity(animation ? 0 : 1)
 
                 }
                 .background(
@@ -225,7 +226,7 @@ struct OpenedPlaylist: View {
                 if (-offset.width - (dragProgression * 0.3)) >= 270 {
                     animateBackgroundImage = false
 //                    withAnimation(.easeInOut(duration: 0.3)) {
-                    withAnimation(.linear(duration: 0.05)) {
+                    withAnimation(.linear(duration: 0.15)) {
                         animation = true
                         showingPlaylist = false
                     }
