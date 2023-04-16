@@ -151,27 +151,6 @@ extension VisualEffectBlur where Content == EmptyView {
     }
 }
 
-// MARK: - Previews
-
-struct VisualEffectBlur_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.red, .blue]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            
-            VisualEffectBlur(blurStyle: .systemUltraThinMaterial, vibrancyStyle: .fill) {
-                Text("Hello World!")
-                    .frame(width: 200, height: 100)
-            }
-        }
-        .previewLayout(.sizeThatFits)
-    }
-}
-
-
 #endif
 
 func readSongFile(fileName: String) -> [Song] {
@@ -367,5 +346,127 @@ private struct FullSwipePopHelper<MainContent: View,Content: View>: View{
         let mainOffset = (start + progressWidth) < 0 ? (start + progressWidth) : 0
         
         return mainOffset
+    }
+}
+extension View{
+    
+    // Creating a Property for View to access easily...
+    func fullSwipePop2<Content: View>(show: Binding<Bool>, animating: ObservedObject<AnimationObservable>, content: @escaping () -> Content)-> some View{
+        
+        return FullSwipePopHelper2(show: show, animating: animating, mainContent: self, content: content())
+    }
+}
+
+private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
+    
+    // Where main Content will be our main view...
+    // since we are moving our main left when overlay view shows....
+    var mainContent: MainContent
+    var content: Content
+    @Binding var show: Bool
+    @ObservedObject var animating: AnimationObservable
+    init(show: Binding<Bool>, animating: ObservedObject<AnimationObservable>, mainContent: MainContent,content: Content){
+        self._show = show
+        self._animating = animating
+        self.content = content
+        self.mainContent = mainContent
+    }
+    // Gesture Properties...
+    var defaultSize: CGFloat = .zero
+    @GestureState private var offsetX: CGSize = .zero
+    @GestureState var dragProgression: CGFloat = 0
+    @Environment(\.colorScheme) var colorScheme
+    var body: some View{
+        
+        // Geometry Reader for Getting Screen width for gesture calc...
+        GeometryReader{
+            let size = $0.size
+            mainContent
+                .overlay(alignment: .topLeading) {
+                    content
+                        .frame(width: size.width - shrinkWidth(frame: size.width), height: size.height - shrinkHeight(frame: size.height))
+                        .highPriorityGesture(
+                            DragGesture()
+                                .updating($offsetX) { value, state, transaction in
+                                    withAnimation {
+                                        if value.translation.width < 0 {
+                                            state = value.translation
+                                            animating.toggleAnimation(animation: 1, value: true)
+//                                            animating.toggleAnimation(animation: 3, value: true)
+                                        }
+                                    }
+                                }
+                                .updating($dragProgression) { value, state, transaction in
+                                    state = value.translation.width
+                                }
+                        )
+                        .onChange(of: offsetX) { offset in
+                            if offsetX.width >= 0.0 {
+                                withAnimation {
+//                                    animating.animation1 = false
+                                    animating.toggleAnimation(animation: 1, value: false)
+                                    animating.toggleAnimation(animation: 2, value: false)
+//                                    animating.toggleAnimation(animation: 3, value: false)
+                                }
+                            }
+                            if (-offset.width - (dragProgression * 0.3)) >= 270 {
+                                withAnimation(.linear(duration: 0.15)) {
+                                    animating.toggleAnimation(animation: 3, value: false)
+//                                    animating.animation2 = true
+//                                    animating.toggleAnimation(animation: 1, value: false)
+                                    show = false
+                                }
+                            }
+                        }
+                        .transition(.asymmetric(insertion: .identity, removal: .offset(y: -5)))
+                }
+        }
+    }
+    func shrinkWidth(frame: Double) -> Double  {
+
+        if -offsetX.width/1.5 < frame {
+            return -offsetX.width/1.5
+        } else {
+            return 0.0
+        }
+    }
+    func shrinkHeight(frame: Double) -> Double  {
+        if -offsetX.width*2.5 < frame {
+            return -offsetX.width*2.5
+        } else {
+            return 0.0
+        }
+    }
+}
+
+class AnimationObservable: ObservableObject {
+    @Published var animation1 = false
+    @Published var animation2 = false
+    @Published var animation3 = false
+    @Published var animation4 = false
+    @Published var animation5 = false
+    func toggleAnimation(animation: Int, value: Bool) {
+        
+        switch animation {
+        case 1:
+            animation1 = value
+        case 2:
+            animation2 = value
+        case 3:
+            animation3 = value
+        case 4:
+            animation4 = value
+        case 5:
+            animation5 = value
+        default:
+            animation1 = value
+        }
+    }
+    func resetAnimations() {
+        animation1 = false
+        animation2 = false
+        animation3 = false
+        animation4 = false
+        animation5 = false
     }
 }

@@ -12,6 +12,7 @@ struct Main: View {
     @StateObject var music = MusicObservable()
     @Namespace private var animation
     @State var selectedTab = "songs"
+    @StateObject var animations = AnimationObservable()
     var body: some View {
         TabView(selection: $selectedTab) {
             Songs(music: music)
@@ -24,7 +25,7 @@ struct Main: View {
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
                 .tag("albums")
-            Playlists(music: music)
+            Playlists(music: music, animations: animations)
                 .setTabItem("Playlists", "play.square.stack")
                 .setTabBarBackground(.init(.ultraThickMaterial))
                 .hideTabBar(music.hideTabBar)
