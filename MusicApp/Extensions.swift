@@ -239,14 +239,6 @@ struct GlossyBackground: View {
             VisualEffectBlur(blurStyle: .systemMaterial)
         }
         .ignoresSafeArea()
-//        ZStack {
-//            Image("takeCare")
-//                .resizable()
-//                .opacity(0.75)
-//                .scaledToFit()
-//            VisualEffectBlur(blurStyle: .systemMaterial)
-//                .ignoresSafeArea()
-//        }
     }
 }
 
@@ -310,7 +302,7 @@ private struct FullSwipePopHelper<MainContent: View,Content: View>: View{
                                     
                                     // Close if pass...
                                     withAnimation(.linear.speed(2)){
-                                                                                offset = 0
+                                        offset = 0
                                         
                                         let translation = value.translation.width
                                         
@@ -351,13 +343,13 @@ private struct FullSwipePopHelper<MainContent: View,Content: View>: View{
 extension View{
     
     // Creating a Property for View to access easily...
-    func fullSwipePop2<Content: View>(show: Binding<Bool>, animating: ObservedObject<AnimationObservable>, content: @escaping () -> Content)-> some View{
+    func shrinkingView<Content: View>(show: Binding<Bool>, animating: ObservedObject<AnimationObservable>, content: @escaping () -> Content)-> some View{
         
-        return FullSwipePopHelper2(show: show, animating: animating, mainContent: self, content: content())
+        return ShrinkingViewHelper(show: show, animating: animating, mainContent: self, content: content())
     }
 }
 
-private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
+private struct ShrinkingViewHelper<MainContent: View,Content: View>: View{
     
     // Where main Content will be our main view...
     // since we are moving our main left when overlay view shows....
@@ -371,14 +363,10 @@ private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
         self.content = content
         self.mainContent = mainContent
     }
-    // Gesture Properties...
-    var defaultSize: CGFloat = .zero
     @GestureState private var offsetX: CGSize = .zero
     @GestureState var dragProgression: CGFloat = 0
-    @Environment(\.colorScheme) var colorScheme
     var body: some View{
         
-        // Geometry Reader for Getting Screen width for gesture calc...
         GeometryReader{
             let size = $0.size
             mainContent
@@ -388,11 +376,10 @@ private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
                         .highPriorityGesture(
                             DragGesture()
                                 .updating($offsetX) { value, state, transaction in
-                                    withAnimation {
+                                    withAnimation(.easeOut(duration: 0.1)) {
                                         if value.translation.width < 0 {
                                             state = value.translation
                                             animating.toggleAnimation(animation: 1, value: true)
-//                                            animating.toggleAnimation(animation: 3, value: true)
                                         }
                                     }
                                 }
@@ -403,17 +390,12 @@ private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
                         .onChange(of: offsetX) { offset in
                             if offsetX.width >= 0.0 {
                                 withAnimation {
-//                                    animating.animation1 = false
                                     animating.toggleAnimation(animation: 1, value: false)
                                     animating.toggleAnimation(animation: 2, value: false)
-//                                    animating.toggleAnimation(animation: 3, value: false)
                                 }
                             }
                             if (-offset.width - (dragProgression * 0.3)) >= 270 {
                                 withAnimation(.linear(duration: 0.15)) {
-                                    animating.toggleAnimation(animation: 3, value: false)
-//                                    animating.animation2 = true
-//                                    animating.toggleAnimation(animation: 1, value: false)
                                     show = false
                                 }
                             }
@@ -423,7 +405,7 @@ private struct FullSwipePopHelper2<MainContent: View,Content: View>: View{
         }
     }
     func shrinkWidth(frame: Double) -> Double  {
-
+        
         if -offsetX.width/1.5 < frame {
             return -offsetX.width/1.5
         } else {
