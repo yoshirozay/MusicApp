@@ -152,6 +152,7 @@ class MusicObservable: ObservableObject {
     init() {
         selectAlbum(album: albums[1])
         createPlaylists()
+        createPlaylists2()
     }
     func showMediaPlayer() {
         withAnimation(.easeInOut(duration: 0.3)) {
@@ -177,16 +178,54 @@ class MusicObservable: ObservableObject {
             selectedPlaylist = playlist
         }
     }
+//    1. haze wave
+//    2. vibe tribe
+//    3. dream flow
+//    4. neon nights
+//    5. sunburst
+//    6. moonbeam
+//    7. cosmic crush
+//    8. starlight
+//    9. electric echo
+//    10. velvet visions
+//    11. golden hour
+//    12. wildflower
+//    13. oceanic
+//    14. midnight muse
+//    15. solar flare
+//    16. honeydew
+//    17. bluebird
+//    18. cherry blossom
+//    19. rainbow road
+//    20. silver lining
     func createPlaylists() {
-        let playlistNames = ["Playlist 1", "Playlist 2", "Playlist 3", "Playlist 4", "Playlist 5", "Playlist 6"]
+        let playlistNames = ["haze wave", "neon nights", "starlight", "dream flow", "bluebird 5", "silver lining"]
+        var allArtwork = [String]()
         for (index, item) in playlistNames.enumerated() {
             var songs = [Song]()
             while songs.count < 12 {
                 songs.append(getRandomSong(playlistSongs: songs))
             }
-            let playlist = Playlist(id: index, playlistName: item, playlistPhoto: songs[0].albumPhoto, songs: songs, monthlyListeners: Int.random(in: 1_000_000...100_000_000))
+            let artwork = getRandomArtwork(allArtwork: allArtwork)
+            allArtwork.append(artwork)
+            let playlist = Playlist(id: index, playlistName: item, playlistPhoto: artwork, songs: songs, monthlyListeners: Int.random(in: 1_000_000...100_000_000))
             playlists.append(playlist)
+            
+        }
+    }
+    func createPlaylists2() {
+        let playlistNames = ["cherry blossom", "rainbow road", "solar flare", "golden hour", "velvet visions", "sunburst"]
+        var allArtwork = [String]()
+        for (index, item) in playlistNames.enumerated() {
+            var songs = [Song]()
+            while songs.count < 12 {
+                songs.append(getRandomSong(playlistSongs: songs))
+            }
+            let artwork = getRandomArtwork(allArtwork: allArtwork)
+            allArtwork.append(artwork)
+            let playlist = Playlist(id: index, playlistName: item, playlistPhoto: artwork, songs: songs, monthlyListeners: Int.random(in: 1_000_000...100_000_000))
             playlists2.append(playlist)
+            
         }
     }
 
@@ -206,6 +245,14 @@ class MusicObservable: ObservableObject {
         song.id = playlistSongs.count
         
         return song
+    }
+    func getRandomArtwork(allArtwork: [String]) -> String {
+        var artwork: String
+        repeat {
+            artwork = "playlist\(Int.random(in: 1...17))"
+        } while allArtwork.contains(where: { $0 == artwork || artwork == "playlist7" })
+        
+        return artwork
     }
 }
 

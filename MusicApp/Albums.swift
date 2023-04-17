@@ -46,6 +46,7 @@ struct Albums: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 175, height: 175)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 4)
                 .animation(nil, value: music.selectedAlbum)
             Spacer()
             VStack {

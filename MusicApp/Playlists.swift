@@ -20,16 +20,36 @@ struct Playlists: View {
     @ObservedObject var music: MusicObservable
     @State var showingPlaylist = false
     @Namespace private var animation2
+    @Namespace private var animation3
     @ObservedObject var animations: AnimationObservable
     var body: some View {
         ZStack {
-            VStack (alignment: .leading, spacing: 0) {
-                Text("Trending Now")
-                    .font(.title.weight(.semibold))
-                    .padding(.leading, 16)
-                PlaylistCarousel(music: music, showingPlaylist: $showingPlaylist, animation2: animation2)
-                    .padding(.trailing, 64)
+            GeometryReader {
+                let size = $0.size
+                VStack {
+                    
+                    VStack (alignment: .leading, spacing: 0) {
+
+                        Text("Recently Played")
+                            .font(.title2.weight(.semibold))
+                            .padding(.leading, 16)
+                        PlaylistCarousel(music: music, showingPlaylist: $showingPlaylist, animation2: animation2)
+                            .padding(.trailing, 64)
+//                            .padding(.top, 16)
+                    }
+                    .frame(height: size.height*0.33)
+
+                    VStack (alignment: .leading, spacing: 0) {
+                        Text("Trending Now")
+                            .font(.title2.weight(.semibold))
+                            .padding(.leading, 16)
+                        PlaylistCarousel2(music: music, showingPlaylist: $showingPlaylist, animation3: animation3)
+//                            .padding(.trailing, 64)
+                            .padding(.bottom, 28)
+                    }
                     .padding(.top, 16)
+//                    .frame(height: size.height*0.66)
+                }
             }
             .shrinkingView(show: $showingPlaylist, animating: _animations) {
                 OpenPlaylist
@@ -115,6 +135,8 @@ struct PlaylistCarousel: View {
                        , height: 175 - CGFloat(item.id - scrolled) * 25)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 .overlay {
+                    LinearGradient(colors: [.clear,.black.opacity(0.3)], startPoint: .top, endPoint: .bottom)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     ZStack {
                         if item.id - scrolled <= 0  {
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -128,12 +150,13 @@ struct PlaylistCarousel: View {
                                 .opacity(showingPlaylist ? 0 : 1)
                         }
                     }
+                    .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 2)
                 }
             
             Text(item.playlistName)
                 .foregroundColor(.black)
-                .font(.callout.weight(.semibold))
-                .offset(x: 2, y: 24)
+                .font(.footnote.weight(.semibold))
+                .offset(x: 2, y: 20)
                 .opacity(item.id - scrolled <= 0 ? 1 : 0)
         }
     }
@@ -166,6 +189,146 @@ struct PlaylistCarousel: View {
                 }
                 else{
                     music.playlists[playlist.id - 1].offset = -((size.width - 60) + 60)
+                }
+            }
+        }
+    }
+}
+struct PlaylistCarousel2: View {
+    @State var index = 0
+    @State var scrolled = 0
+    @ObservedObject var music: MusicObservable
+    @Binding var showingPlaylist: Bool
+    var animation3: Namespace.ID
+    var body: some View {
+        GeometryReader {
+            let size = $0.size
+            ZStack{
+                ForEach(music.playlists2.reversed()){ item in
+                    HStack{
+                        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)){
+                            if !showingPlaylist || item.id - scrolled > 0 {
+                                playlistArtwork(item: item, size: size)
+                            }
+                        }
+                        
+                        .frame(width: size.width - 120)
+//                        .offset(x: item.id - scrolled <= 2 ? CGFloat(item.id - scrolled) * 60 : 60)
+                        .offset(x: item.id - scrolled <= 2 ? CGFloat(item.id - scrolled) * 60 : 60)
+//                                , y:  item.id - scrolled <= 2 ? CGFloat(item.id - scrolled) * 15 : 0 )
+                        .opacity(item.id - scrolled <= 2 ? 1 : 0)
+                        Spacer()
+                    }
+                    .frame(width: size.width)
+                    .contentShape(Rectangle())
+                    
+                    .offset(x: item.offset)
+                    .highPriorityGesture(DragGesture().onChanged({ (value) in
+                        withAnimation{
+                            disableDragForLastPlaylist(playlist: item, value: value, size: size)
+                        }
+                    })
+                        .onEnded({ (value) in
+                            withAnimation{
+                                navigatePlaylists(playlist: item, value: value, size: size)
+                            }
+                            
+                        }))
+                    .onTapGesture {
+                        withAnimation(.linear(duration: 0.2)) {
+                            music.selectedPlaylist = item
+                            showingPlaylist = true
+                        }
+                    }
+                }
+            }
+            .frame(height: size.height, alignment: .leading)
+            .padding(.leading, 28)
+        }
+    }
+    func playlistArtwork(item: Playlist, size: CGSize) -> some View {
+        ZStack(alignment: .bottom) {
+            Image(item.playlistPhoto)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .matchedGeometryEffect(id: item.id, in: animation3)
+                .frame(width:
+                        size.width*0.75
+                       - CGFloat(item.id - scrolled) * 25
+                       , height: size.width*0.95 - CGFloat(item.id - scrolled) * 25)
+//                .rotationEffect(.degrees(30))
+            
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay {
+                    LinearGradient(colors: [.clear,.black.opacity(0.3)], startPoint: .top, endPoint: .bottom)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    ZStack {
+//                        if item.id - scrolled <= 0  {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.clear)
+                                .matchedGeometryEffect(id: "background", in: animation3)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .stroke(.white, lineWidth: 3.5)
+                                .allowsHitTesting(false)
+                                .opacity(showingPlaylist ? 0 : 1)
+//                        }
+                    }
+                    .frame(width:
+                            size.width*0.75
+                           - CGFloat(item.id - scrolled) * 25
+                           , height: size.width*0.95 - CGFloat(item.id - scrolled) * 25)
+
+                }
+                .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 4)
+//                .rotationEffect(.degrees(item.id - scrolled <= 0 ? 0 : Double(item.id - scrolled)*5))
+//            Text(item.playlistName)
+//                .foregroundColor(.black)
+//                .font(.footnote.weight(.semibold))
+//                .offset(x: 2, y: 24)
+//                .opacity(item.id - scrolled <= 0 ? 1 : 0)
+            ZStack {
+                Rectangle()
+                    .frame(height: 30)
+                    .foregroundColor(.white)
+                Text(item.playlistName.uppercased())
+                    .foregroundColor(.black)
+                    .font(.body.weight(.semibold))
+                    .tracking(5)
+            }
+            .offset(y: music.selectedSong.songName != "" ? -70 : -70)
+//                        .offset(x: 2, y: 24)
+            .opacity(item.id - scrolled <= 0 ? 1 : 0)
+        }
+    }
+    func disableDragForLastPlaylist(playlist: Playlist, value: DragGesture.Value, size: CGSize) {
+        if value.translation.width < 0 && playlist.id != music.playlists2.last!.id{
+            music.playlists2[playlist.id].offset = value.translation.width
+        }
+        else{
+            if playlist.id > 0{
+                music.playlists2[playlist.id - 1].offset = -((size.width - 60) + 60) + value.translation.width
+            }
+        }
+        
+    }
+    func navigatePlaylists(playlist: Playlist, value: DragGesture.Value, size: CGSize) {
+        if value.translation.width < 0{
+            if -value.translation.width > 10 && playlist.id != music.playlists2.last!.id{
+                music.playlists2[playlist.id].offset = -((size.width - 60) + 60)
+                scrolled += 1
+            }
+            else{
+                music.playlists2[playlist.id].offset = 0
+            }
+        }
+        else{
+            if playlist.id > 0{
+                if value.translation.width > 10{
+                    music.playlists2[playlist.id - 1].offset = 0
+                    scrolled -= 1
+                }
+                else{
+                    music.playlists2[playlist.id - 1].offset = -((size.width - 60) + 60)
                 }
             }
         }

@@ -49,6 +49,7 @@ struct IndividualSong: View {
                         .resizable()
                         .frame(width: 175, height: 175)
                         .cornerRadius(10)
+                        .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 4)
                     Spacer()
                     VStack (spacing: 2) {
                         Text(song.songName)
