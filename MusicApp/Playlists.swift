@@ -43,11 +43,12 @@ struct Playlists: View {
                         Text("Trending Now")
                             .font(.title2.weight(.semibold))
                             .padding(.leading, 16)
+//                            .padding(.bottom,)
                         PlaylistCarousel2(music: music, showingPlaylist: $showingPlaylist, animation3: animation3)
 //                            .padding(.trailing, 64)
-                            .padding(.bottom, 58)
+                            .padding(.bottom, 32)
                     }
-//                    .padding(.top, 16)
+                    .padding(.top, 16)
 //                    .frame(height: size.height*0.66)
                 }
             }
