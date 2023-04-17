@@ -34,7 +34,7 @@ struct Playlists: View {
                             .font(.title2.weight(.semibold))
                             .padding(.leading, 16)
                         PlaylistCarousel(music: music, showingPlaylist: $showingPlaylist, animation2: animation2)
-                            .padding(.trailing, 96)
+                            .padding(.trailing, 64)
 //                            .padding(.top, 16)
                     }
                     .frame(height: size.height*0.33, alignment: .leading)
