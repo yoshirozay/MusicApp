@@ -34,10 +34,10 @@ struct Playlists: View {
                             .font(.title2.weight(.semibold))
                             .padding(.leading, 16)
                         PlaylistCarousel(music: music, showingPlaylist: $showingPlaylist, animation2: animation2)
-                            .padding(.trailing, 64)
+                            .padding(.trailing, 96)
 //                            .padding(.top, 16)
                     }
-                    .frame(height: size.height*0.33)
+                    .frame(height: size.height*0.33, alignment: .leading)
 
                     VStack (alignment: .leading, spacing: 0) {
                         Text("Trending Now")
@@ -45,9 +45,9 @@ struct Playlists: View {
                             .padding(.leading, 16)
                         PlaylistCarousel2(music: music, showingPlaylist: $showingPlaylist, animation3: animation3)
 //                            .padding(.trailing, 64)
-                            .padding(.bottom, 28)
+                            .padding(.bottom, 58)
                     }
-                    .padding(.top, 16)
+//                    .padding(.top, 16)
 //                    .frame(height: size.height*0.66)
                 }
             }
@@ -124,11 +124,14 @@ struct PlaylistCarousel: View {
         }
     }
     func playlistArtwork(item: Playlist) -> some View {
-        Group {
-            Image(item.playlistPhoto)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: item.id, in: animation2)
+        ZStack(alignment: .bottom) {
+//            VStack(alignment: .bottom) {
+                Image(item.playlistPhoto)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .matchedGeometryEffect(id: item.id, in: animation2)
+                
+                
                 .frame(width:
                         175
                        - CGFloat(item.id - scrolled) * 25
@@ -152,12 +155,33 @@ struct PlaylistCarousel: View {
                     }
                     .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 2)
                 }
-            
-            Text(item.playlistName)
-                .foregroundColor(.black)
-                .font(.footnote.weight(.semibold))
-                .offset(x: 2, y: 20)
+                ZStack {
+//                    Rectangle()
+//                        .frame(width:
+//                                175
+//                               - CGFloat(item.id - scrolled) * 25, height: 20)
+//                        .foregroundColor(.white)
+                    Image("laser")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 30)
+                        .mask(
+                            Text(item.playlistName.uppercased())
+                                .foregroundColor(.black)
+                                .font(.caption.weight(.semibold))
+                                .tracking(5)
+                        )
+                }
+                .offset(y: 30)
                 .opacity(item.id - scrolled <= 0 ? 1 : 0)
+                
+//            }
+//            Text(item.playlistName)
+//                .foregroundColor(.black)
+//                .font(.footnote.weight(.semibold))
+//                .offset(x: 2, y: 20)
+//                .opacity(item.id - scrolled <= 0 ? 1 : 0)
+//                .padding(.leading, 20)
         }
     }
     func disableDragForLastPlaylist(playlist: Playlist, value: DragGesture.Value, size: CGSize) {
@@ -280,23 +304,22 @@ struct PlaylistCarousel2: View {
 
                 }
                 .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 4)
-//                .rotationEffect(.degrees(item.id - scrolled <= 0 ? 0 : Double(item.id - scrolled)*5))
-//            Text(item.playlistName)
-//                .foregroundColor(.black)
-//                .font(.footnote.weight(.semibold))
-//                .offset(x: 2, y: 24)
-//                .opacity(item.id - scrolled <= 0 ? 1 : 0)
             ZStack {
                 Rectangle()
                     .frame(height: 30)
                     .foregroundColor(.white)
+                Image("laser")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 30)
+                    .mask(
                 Text(item.playlistName.uppercased())
                     .foregroundColor(.black)
                     .font(.body.weight(.semibold))
                     .tracking(5)
+                )
             }
             .offset(y: music.selectedSong.songName != "" ? -70 : -70)
-//                        .offset(x: 2, y: 24)
             .opacity(item.id - scrolled <= 0 ? 1 : 0)
         }
     }
