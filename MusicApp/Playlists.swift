@@ -57,6 +57,9 @@ struct Playlists: View {
                 OpenPlaylist
             }
             .onChange(of: showingPlaylist) { change in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                    animations.toggleAnimation(animation: 4, value: false)
+                }
                 if change == false {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         animations.resetAnimations()
@@ -386,12 +389,11 @@ struct OpenedPlaylist: View {
                         .opacity(animation ? isFromLargeCarousel != true ? 0 : 1 : 1)
                     SongList
                         .opacity(animations.animation2 ? 0 : 1)
+                    
                 }
                 
             }
             .background(
-                Color.clear
-                    .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.ultraThickMaterial)
                             .overlay (
@@ -399,7 +401,6 @@ struct OpenedPlaylist: View {
                             )
                             .clipped()
                             .opacity(animations.animation4 ? 0 : 1)
-                    }
             )
             .coordinateSpace(name: "SCROLL")
             .ignoresSafeArea(.container, edges: .vertical)
