@@ -141,8 +141,9 @@ struct PlaylistCarousel: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .overlay {
                         ZStack(alignment: .bottom) {
-                            LinearGradient(colors: [.clear,.black.opacity(0.3)], startPoint: .top, endPoint: .bottom)
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+//                            LinearGradient(colors: [.clear,.black.opacity(0.3)], startPoint: .top, endPoint: .bottom)
+//                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            Color.clear
                             ZStack {
                                 if item.id - scrolled <= 0  {
                                     RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -382,10 +383,10 @@ struct OpenedPlaylist: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0){
                     HeaderView
+                        .opacity(animation ? animationSelect != true ? 0 : 1 : 1)
                     SongList
                         .opacity(animations.animation2 ? 0 : 1)
                 }
-                .opacity(animation ? animationSelect != true ? 0 : 1 : 1)
                 
             }
             .background(
