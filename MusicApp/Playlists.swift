@@ -22,7 +22,7 @@ struct Playlists: View {
     @Namespace private var animation2
     @Namespace private var animation3
     @ObservedObject var animations: AnimationObservable
-    @State var animationSelect = false
+    @State var isFromLargeCarousel = false
     var body: some View {
         ZStack {
             GeometryReader {
@@ -47,7 +47,7 @@ struct Playlists: View {
                     VStack (alignment: .leading, spacing: 16) {
                         Text("Trending Now")
                             .font(.title2.weight(.semibold))
-                        PlaylistCarousel2(music: music, showingPlaylist: $showingPlaylist, animation3: animation3, size: size, animationSelect: $animationSelect)
+                        PlaylistCarousel2(music: music, showingPlaylist: $showingPlaylist, animation3: animation3, size: size, isFromLargeCarousel: $isFromLargeCarousel)
                             .offset(x: 8)
                     }
                 }
@@ -58,9 +58,9 @@ struct Playlists: View {
             }
             .onChange(of: showingPlaylist) { change in
                 if change == false {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         animations.resetAnimations()
-                        animationSelect = false
+                        isFromLargeCarousel = false
                     }
                 }
             }
@@ -71,7 +71,7 @@ struct Playlists: View {
     }
     @ViewBuilder var OpenPlaylist: some View {
         if showingPlaylist {
-            OpenedPlaylist(music: music, animation2: animation2, animation3: animation3, showingPlaylist: $showingPlaylist, animations: animations, animationSelect: animationSelect)
+            OpenedPlaylist(music: music, animation2: animation2, animation3: animation3, showingPlaylist: $showingPlaylist, animations: animations, isFromLargeCarousel: isFromLargeCarousel)
                 .transition(.asymmetric(insertion: .identity, removal: .offset(y: -5)))
                 .ignoresSafeArea()
         }
@@ -215,7 +215,7 @@ struct PlaylistCarousel2: View {
     @Binding var showingPlaylist: Bool
     var animation3: Namespace.ID
     @State var size: CGSize
-    @Binding var animationSelect: Bool
+    @Binding var isFromLargeCarousel: Bool
     var body: some View {
         ZStack {
             ForEach(music.playlists2.reversed()){ item in
@@ -247,7 +247,7 @@ struct PlaylistCarousel2: View {
                         
                     }))
                 .onTapGesture {
-                    animationSelect = true
+                    isFromLargeCarousel = true
                     withAnimation(.easeInOut(duration: 0.2)) {
                         music.selectedPlaylist = item
                         showingPlaylist = true
@@ -376,33 +376,35 @@ struct OpenedPlaylist: View {
     @Binding var showingPlaylist: Bool
     @State var animation = true
     @ObservedObject var animations: AnimationObservable
-    @State var animationSelect = false
+    @State var isFromLargeCarousel = false
     var body: some View {
         
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0){
                     HeaderView
-                        .opacity(animation ? animationSelect != true ? 0 : 1 : 1)
+                        .opacity(animation ? isFromLargeCarousel != true ? 0 : 1 : 1)
                     SongList
                         .opacity(animations.animation2 ? 0 : 1)
                 }
                 
             }
             .background(
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.ultraThickMaterial)
-                    .overlay (
-                        GlossyBackground()
-                    )
-                    .clipped()
-                
+                Color.clear
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.ultraThickMaterial)
+                            .overlay (
+                                GlossyBackground()
+                            )
+                            .clipped()
+                            .opacity(animations.animation4 ? 0 : 1)
+                    }
             )
             .coordinateSpace(name: "SCROLL")
             .ignoresSafeArea(.container, edges: .vertical)
         }
-        .matchedGeometryEffect(id: "background", in: animationSelect ? animation3 : animation2)
+        .matchedGeometryEffect(id: "background", in: isFromLargeCarousel ? animation3 : animation2)
         .onAppear {
             withAnimation(.easeInOut(duration: 0.4)) {
                 animation = false
@@ -419,7 +421,7 @@ struct OpenedPlaylist: View {
             Image(music.selectedPlaylist.playlistPhoto)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: music.selectedPlaylist.id, in: animationSelect ? animation3 : animation2)
+                .matchedGeometryEffect(id: music.selectedPlaylist.id, in: isFromLargeCarousel ? animation3 : animation2)
                 .frame(width: size.width, height: height > 0 ? height : 0, alignment: .top)
                 .overlay(content: {
                     ZStack(alignment: .topLeading) {

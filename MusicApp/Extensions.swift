@@ -395,6 +395,7 @@ private struct ShrinkingViewHelper<MainContent: View,Content: View>: View{
                                 }
                             }
                             if (-offset.width - (dragProgression * 0.3)) >= 270 {
+                                animating.toggleAnimation(animation: 4, value: true)
                                 withAnimation(.linear(duration: 0.15)) {
                                     show = false
                                 }
