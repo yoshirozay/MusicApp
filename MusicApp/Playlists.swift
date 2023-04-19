@@ -30,12 +30,19 @@ struct Playlists: View {
                     
                     VStack (alignment: .leading, spacing: 16) {
                         
-                        Text("Recently Played")
-                            .font(.title2.weight(.semibold))
+                        HStack {
+                            
+                            Text("Recently Played")
+                                .font(.title2.weight(.semibold))
+                            Spacer()
+                            Image(systemName: "magnifyingglass")
+                                .font(.title3)
+                            
+                        }
                         PlaylistCarousel(music: music, showingPlaylist: $showingPlaylist, animation2: animation2, size: size)
                     }
                     .padding(.bottom, 32)
-
+                    
                     VStack (alignment: .leading, spacing: 16) {
                         Text("Trending Now")
                             .font(.title2.weight(.semibold))
@@ -149,10 +156,7 @@ struct PlaylistCarousel: View {
                             }
                             .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 2)
                             
-                            Image("laser")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(height: 30)
+                            TextAnimation()
                                 .mask(
                                     Text(item.playlistName.uppercased())
                                         .foregroundColor(.black)
@@ -284,22 +288,24 @@ struct PlaylistCarousel2: View {
                 }
                 .shadow(color: .black.opacity(item.id - scrolled <= 0 ? 0.25 : 0), radius: 4, x: 0, y: 4)
             ZStack {
-                Rectangle()
-                    .frame(height: 30)
-                    .foregroundColor(.white)
-//                ColorAnimation()
-//                    .mask(
-                Image("laser")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 30)
-                    .mask(
-                        Text(item.playlistName.uppercased())
-                            .foregroundColor(.black)
-                            .font(.body.weight(.semibold))
-                            .tracking(5)
-                    )
-//                    )
+                if item.id - scrolled == 0 {
+                    Rectangle()
+                        .frame(height: 30)
+                        .foregroundColor(.white)
+                    //                    ColorAnimation()
+                    //                        .mask(
+                    Image("laser")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 30)
+                        .mask(
+                            Text(item.playlistName.uppercased())
+                                .foregroundColor(.black)
+                                .font(.body.weight(.semibold))
+                                .tracking(5)
+                        )
+                    //                        )
+                }
             }
             .offset(y: -70)
             .opacity(item.id - scrolled <= 0 ? 1 : 0)
@@ -340,22 +346,22 @@ struct PlaylistCarousel2: View {
     }
 }
 
-struct ColorAnimation: View {
-    @State var isAnimating = false
+struct TextAnimation: View {
+    @State var animation = false
     var body: some View {
         ZStack {
-            if isAnimating {
-                Image("laser")
-                    .resizable()
-                    .scaledToFill()
-            } else {
-                Color.red
-            }
+            Image("laser")
+                .resizable()
+                .scaledToFill()
+            LinearGradient(colors: [Color.teal, Color.purple, Color.blue], startPoint: .leading, endPoint: .trailing)
+                .opacity(animation ? 1: 0)
         }
         .frame(height: 30)
         .onAppear {
-            withAnimation(.linear(duration: 2)) {
-                isAnimating.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                withAnimation(.linear(duration: 2).delay(1).repeatForever()) {
+                    animation.toggle()
+                }
             }
         }
     }
@@ -537,7 +543,7 @@ struct OpenedPlaylist: View {
 struct Playlists_Previews: PreviewProvider {
     static var previews: some View {
         //        Playlists(music: MusicObservable())
-//        ColorAnimation()
+        //        ColorAnimation()
         Main(selectedTab: "playlists")
         //        OpenedPlaylist(music: MusicObservable())
     }
