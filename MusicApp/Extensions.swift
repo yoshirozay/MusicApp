@@ -62,7 +62,9 @@ extension DragGesture.Value {
                 }
             }
         }
-        fatalError("Unable to retrieve velocity from \(Self.self)")
+//        print("error")
+        return CGSize(width: 0, height: 0)
+//        fatalError("Unable to retrieve velocity from \(Self.self)")
     }
     
 }
